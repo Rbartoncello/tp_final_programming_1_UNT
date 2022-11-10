@@ -13,6 +13,8 @@
 		"interval_time_jump": 300,
 		"width": 60,
 		"height": 100,
+		"status_init": "idle",
+		"orientation_init": ["right"],
 		"animations": {
 				"idle": {
 					"path": "Idle (32x32).png",
@@ -65,6 +67,8 @@
 		"interval_time_jump": 300,
 		"width": 60,
 		"height": 100,
+		"status_init": "run",
+		"orientation_init": ["left", "right"],
 		"animations": {
 			"run": {
 				"path": "Run (30x38).png",
@@ -73,6 +77,14 @@
 				"right": true,
 				"left": false
 			}
+		},
+		"amount_shot": 10,
+		"shot":{
+			"path": "Leafs.png",
+			"time_shooting": 800,
+			"speed": 2,
+			"cols": 2,
+			"rows": 1
 		}
 	},
 	"platforms": [

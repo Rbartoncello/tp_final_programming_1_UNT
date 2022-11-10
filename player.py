@@ -1,61 +1,11 @@
 import pygame as py
 from constantes import *
 from auxiliar import Auxiliar
+from character import Character
 
-
-class Player():
+class Player(Character):
     def __init__(self, data):
-        self.create_animations(data)
-        self.frame_index = 0
-        self.orientation = RIGHT
-        self.status = IDLE
-        self.image = self.animations[self.status][self.orientation][self.frame_index]
-        self.rect = self.image.get_rect(topleft=(data['x'], data['y']))
-        self.rects = {
-            LEFT: py.Rect((self.rect.left, self.rect.top - W_H_RECT), (W_H_RECT, self.rect.h - W_H_RECT)),
-            RIGHT: py.Rect((self.rect.right - W_H_RECT, W_H_RECT),(W_H_RECT, self.rect.h - W_H_RECT))
-        }
-
-        self.direction = py.math.Vector2(0, 0)
-        self.speed = data["speed"]
-        self.gravity = data["gravity"]
-        self.jump_speed = data['jump_speed']
-
-        self.animation_time_accumulation = 0
-        self.frame_rate_ms = data['frame_rate_ms']
-        
-    def create_animations(self, data):
-        self.animations = {}
-        for animation in data['animations']:
-            self.animations[animation] = self.create_sides_animation(data['animations'][animation], data['type'])
-
-    def create_side_animation(self, data, name, side):
-        return Auxiliar.getSurfaceFromSpriteSheet(PATH_SOURCES+name+data['path'], data['cols'], data['rows'], data[side])
-
-    def create_sides_animation(self, data, name):
-        return {
-            RIGHT: self.create_side_animation(data, name, RIGHT),
-            LEFT: self.create_side_animation(data, name, LEFT)
-        }
-        
-    def apply_gravity(self):
-        self.direction.y += self.gravity
-        self.update_position(self.direction)
-
-    def jump(self):
-        if self.status != JUMP and self.status != FALL:
-            self.direction.y = self.jump_speed
-
-    def do_animation(self, delta_ms):
-        self.animation_time_accumulation += delta_ms
-        if self.animation_time_accumulation >= self.frame_rate_ms:
-            self.animation_time_accumulation = 0
-            if self.frame_index >= len(self.animations[self.status][self.orientation]) - 1:
-                self.frame_index = 0
-            else:
-                self.frame_index += 1
-        elif self.frame_index >= len(self.animations[self.status][self.orientation]) - 1:
-            self.frame_index = 0
+        super().__init__(data)
 
     def update(self, delta_ms):
         self.get_input()
@@ -97,6 +47,19 @@ class Player():
                 self.status = RUN
             else:
                 self.status = IDLE
+                
+    def check_collisions(self, platforms):
+        for platform in platforms:
+            if platform.side(RIGHT).colliderect(self.rects[LEFT]) and self.direction.x < 0:
+                self.rect.left = platform.side(RIGHT).right
+            if platform.side(LEFT).colliderect(self.rects[RIGHT]) and self.direction.x > 0:
+                self.rect.right = platform.side(LEFT).left
+            if platform.side(TOP).colliderect(self.rect):
+                self.rect.top = platform.side(TOP).bottom
+                self.direction.y = 0
+            if platform.side(GROUND).colliderect(self.rect):
+                self.rect.bottom = platform.side(GROUND).top
+                self.direction.y = 0
 
     def draw(self, screen):
         try:
