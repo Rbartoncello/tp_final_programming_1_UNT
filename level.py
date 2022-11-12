@@ -6,9 +6,9 @@ from fruit import Fruit
 from constantes import *
 
 
-class Level():
+class Level:
     def __init__(self, screen, data) -> None:
-        self.list_platforms = []
+        self.platforms = []
         self.enemies = []
         self.fruits = []
         self.player = None
@@ -20,40 +20,51 @@ class Level():
         self.enemies = [Enemy(data['enemy'])]
 
         for platform in data['platforms']:
-            self.list_platforms.append(Platform(platform))
-        
+            self.platforms.append(Platform(platform))
+
         for fruit in data["fruits"]:
             self.fruits.append(Fruit(fruit))
 
     def check_collisions(self):
         if self.enemies:
             for enemy in self.enemies:
-                enemy.check_collisions(self.list_platforms, self.player)
-        self.player.check_collisions(self.list_platforms, self.enemies, self.fruits)
-        
+                enemy.check_collisions(self.platforms, self.player)
+        if self.player is not None: self.player.check_collisions(self.platforms, self.enemies, self.fruits)
+
     def update(self, delta_ms):
-        self.player.update(delta_ms)
-        if self.enemies:
-            for enemy in self.enemies: enemy.update(delta_ms)
-        if self.fruits:
-            for fruit in self.fruits: fruit.update(delta_ms)
-                
-    def draw(self):
-        
-        if self.list_platforms:
-            for platform in self.list_platforms: platform.draw(self.screen)
-            
-        self.player.draw(self.screen)
-        
+        if self.player is not None: self.player.update(delta_ms)
         if self.enemies:
             for enemy in self.enemies:
-                if not enemy.was_kill(): enemy.draw(self.screen)
-                else: del enemy
-                
+                enemy.update(delta_ms)
         if self.fruits:
             for fruit in self.fruits:
-                if not fruit.was_collected: fruit.draw(self.screen)
-                else: del fruit
+                fruit.update(delta_ms)
+
+    def draw(self):
+
+        if self.platforms:
+            for platform in self.platforms:
+                platform.draw(self.screen)
+
+        if self.player is not None:
+            if not self.player.was_die:
+                self.player.draw(self.screen)
+            else:
+                self.player = None
+
+        if self.enemies:
+            for i, enemy in enumerate(self.enemies):
+                if not enemy.was_die:
+                    enemy.draw(self.screen)
+                else:
+                    self.enemies.pop(i)
+
+        if self.fruits:
+            for i, fruit in enumerate(self.fruits):
+                if not fruit.was_collected:
+                    fruit.draw(self.screen)
+                else:
+                    self.fruits.pop(i)
 
     def run(self, delta_ms):
         self.check_collisions()

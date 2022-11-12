@@ -1,15 +1,16 @@
 import pygame as py
 from constantes import *
 
+
 class Auxiliar:
     @staticmethod
     def getSurfaceFromSpriteSheet(path, cols, rows, flip=False, step=1, scale=1):
         lista = []
         surface_imagen = py.image.load(path)
-        frame_widht = int(surface_imagen.get_width()/cols)
-        frame_heigth_scaled = int(surface_imagen.get_height()/rows)
-        frame_widht_scaled = int(frame_widht*scale)
-        frame_heigth_scaled_scaled = int(frame_heigth_scaled*scale)
+        frame_widht = int(surface_imagen.get_width() / cols)
+        frame_heigth_scaled = int(surface_imagen.get_height() / rows)
+        frame_widht_scaled = int(frame_widht * scale)
+        frame_heigth_scaled_scaled = int(frame_heigth_scaled * scale)
         x = 0
 
         for row in range(rows):
@@ -30,7 +31,7 @@ class Auxiliar:
     @staticmethod
     def getSurfaceFromSeparateFiles(path_format, quantity, flip=False, step=1, scale=1, w=0, h=0, repeat_frame=1):
         lista = []
-        for i in range(1, quantity+1):
+        for i in range(1, quantity + 1):
             path = path_format.format(i)
             surface_frame = py.image.load(path)
             frame_width_scaled = int(
@@ -49,7 +50,7 @@ class Auxiliar:
             for i in range(repeat_frame):
                 lista.append(surface_frame)
         return lista
-    
+
     @staticmethod
     def debuggerMod(screen, color_main, color_top, color_bottom, color_left, color_right, rect_main, rects):
         if DEBUG:

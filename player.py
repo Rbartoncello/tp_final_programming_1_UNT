@@ -1,19 +1,25 @@
 import pygame as py
 from constantes import *
-from auxiliar import Auxiliar
 from character import Character
+
 
 class Player(Character):
     def __init__(self, data):
         super().__init__(data)
-        self.live = data['live']
-        self.score = 0
+        self.__live = data['live']
+        self.__score = 0
+
+    @property
+    def score(self): return self.__score
+
+    @score.setter
+    def score(self, score): self.__score += score
 
     def update(self, delta_ms):
-        self.get_input()
-        self.get_status()
-        self.do_animation(delta_ms)
-        self.apply_gravity()
+        if not self._was_die:
+            self.get_input()
+            self.get_status()
+        super().update(delta_ms)
 
     def get_input(self):
         keys = py.key.get_pressed()
@@ -30,6 +36,7 @@ class Player(Character):
 
         elif not keys[py.K_LEFT] and not keys[py.K_RIGHT] or keys[py.K_LEFT] and keys[py.K_RIGHT]:
             self.direction.x = 0
+
         for event in py.event.get():
             if event.type == py.KEYDOWN and event.key == py.K_SPACE:
                 self.jump()
@@ -44,34 +51,35 @@ class Player(Character):
                 self.status = RUN
             else:
                 self.status = IDLE
-                
+
     def check_collisions(self, platforms, enemies, fruits):
         if platforms:
             for platform in platforms:
                 if platform.side(RIGHT).colliderect(self.rects[LEFT]) and self.direction.x < 0:
-                    self.rect.left = platform.side(RIGHT).right
+                    self._rect.left = platform.side(RIGHT).right
                 if platform.side(LEFT).colliderect(self.rects[RIGHT]) and self.direction.x > 0:
-                    self.rect.right = platform.side(LEFT).left
-                if platform.side(TOP).colliderect(self.rect):
-                    self.rect.top = platform.side(TOP).bottom
+                    self._rect.right = platform.side(LEFT).left
+                if platform.side(TOP).colliderect(self._rect):
+                    self._rect.top = platform.side(TOP).bottom
                     self.direction.y = 0
-                if platform.side(GROUND).colliderect(self.rect):
-                    self.rect.bottom = platform.side(GROUND).top
+                if platform.side(GROUND).colliderect(self._rect):
+                    self._rect.bottom = platform.side(GROUND).top
                     self.direction.y = 0
         if enemies:
             for enemy in enemies:
                 if enemy.shots:
                     for shot in enemy.shots:
-                        if shot.rect.colliderect(self.rect):
+                        if shot.rect.colliderect(self._rect) and not shot.rect.x in range(enemy.rect.left, enemy.rect.right):
                             shot.reset()
-                            self.live -= 1
-                            if self.live == 0:
-                                pass
-                    if enemy.side(RIGHT).colliderect(self.rects[LEFT]):
-                        pass
-                    if enemy.side(LEFT).colliderect(self.rects[RIGHT]):
-                        pass
+                            self.__live -= 1
+                            if self.__live == 0: self.die()
+                    if self.rects[GROUND].colliderect(enemy.side(TOP)):
+                        self.jump(True)
+                        self.score = SCORE_KILL
+                        enemy.die()
         if fruits:
             for fruit in fruits:
-                if self.rect.colliderect(fruit.rect):
-                    fruit.collecte()
+                if self._rect.colliderect(fruit.rect):
+                    fruit.pick_up()
+                if fruit.was_pick_up:
+                    self.score = SCORE_FRUIT
