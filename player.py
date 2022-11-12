@@ -6,17 +6,14 @@ from character import Character
 class Player(Character):
     def __init__(self, data):
         super().__init__(data)
+        self.live = data['live']
+        self.score = 0
 
     def update(self, delta_ms):
         self.get_input()
         self.get_status()
         self.do_animation(delta_ms)
         self.apply_gravity()
-
-    def update_position(self, pos):
-        self.rect = py.Rect.move(self.rect, pos)
-        self.rects[RIGHT].midright = self.rect.midright
-        self.rects[LEFT].midleft = self.rect.midleft
 
     def get_input(self):
         keys = py.key.get_pressed()
@@ -48,30 +45,33 @@ class Player(Character):
             else:
                 self.status = IDLE
                 
-    def check_collisions(self, platforms):
-        for platform in platforms:
-            if platform.side(RIGHT).colliderect(self.rects[LEFT]) and self.direction.x < 0:
-                self.rect.left = platform.side(RIGHT).right
-            if platform.side(LEFT).colliderect(self.rects[RIGHT]) and self.direction.x > 0:
-                self.rect.right = platform.side(LEFT).left
-            if platform.side(TOP).colliderect(self.rect):
-                self.rect.top = platform.side(TOP).bottom
-                self.direction.y = 0
-            if platform.side(GROUND).colliderect(self.rect):
-                self.rect.bottom = platform.side(GROUND).top
-                self.direction.y = 0
-
-    def draw(self, screen):
-        try:
-            self.image = self.animations[self.status][self.orientation][self.frame_index]
-        except IndexError:
-            print("ERROR: ", self.status, self.orientation, self.frame_index)
-        else:
-            screen.blit(self.image, self.rect)
-        if DEBUG:
-            py.draw.rect(screen, RED1, self.rect)
-            py.draw.rect(screen, WHITE, self.rects[LEFT])
-            py.draw.rect(screen, WHITE, self.rects[RIGHT])
-
-    def side(self, side):
-        return self.rects[side]
+    def check_collisions(self, platforms, enemies, fruits):
+        if platforms:
+            for platform in platforms:
+                if platform.side(RIGHT).colliderect(self.rects[LEFT]) and self.direction.x < 0:
+                    self.rect.left = platform.side(RIGHT).right
+                if platform.side(LEFT).colliderect(self.rects[RIGHT]) and self.direction.x > 0:
+                    self.rect.right = platform.side(LEFT).left
+                if platform.side(TOP).colliderect(self.rect):
+                    self.rect.top = platform.side(TOP).bottom
+                    self.direction.y = 0
+                if platform.side(GROUND).colliderect(self.rect):
+                    self.rect.bottom = platform.side(GROUND).top
+                    self.direction.y = 0
+        if enemies:
+            for enemy in enemies:
+                if enemy.shots:
+                    for shot in enemy.shots:
+                        if shot.rect.colliderect(self.rect):
+                            shot.reset()
+                            self.live -= 1
+                            if self.live == 0:
+                                pass
+                    if enemy.side(RIGHT).colliderect(self.rects[LEFT]):
+                        pass
+                    if enemy.side(LEFT).colliderect(self.rects[RIGHT]):
+                        pass
+        if fruits:
+            for fruit in fruits:
+                if self.rect.colliderect(fruit.rect):
+                    fruit.collecte()

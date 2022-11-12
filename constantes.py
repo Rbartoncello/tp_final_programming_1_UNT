@@ -8,6 +8,8 @@ FPS = 60
 PATH_SOURCES = "PIXEL ADVENTURE/Recursos/"
 DEBUG = False
 
+TIME_TO_DIE = 2000
+
 FLOOR = 600
 W_H_RECT = 6
 
@@ -21,6 +23,9 @@ WALK = 'walk'
 JUMP = 'jump'
 RUN = 'run'
 FALL = 'fall'
+HIT = 'hit'
+
+COLLECTED = 'collected'
 
 
 FILE = './data.json'

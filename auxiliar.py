@@ -1,5 +1,5 @@
 import pygame as py
-
+from constantes import *
 
 class Auxiliar:
     @staticmethod
@@ -18,10 +18,10 @@ class Auxiliar:
                 y = row * frame_heigth_scaled
                 surface_frame = surface_imagen.subsurface(
                     x, y, frame_widht, frame_heigth_scaled)
-                if (scale != 1):
+                if scale != 1:
                     surface_frame = py.transform.scale(
                         surface_frame, (frame_widht_scaled, frame_heigth_scaled_scaled)).convert_alpha()
-                if (flip):
+                if flip:
                     surface_frame = py.transform.flip(
                         surface_frame, True, False).convert_alpha()
                 lista.append(surface_frame)
@@ -36,16 +36,25 @@ class Auxiliar:
             frame_width_scaled = int(
                 surface_frame.get_rect().w * scale)
             frame_height_scaled = int(surface_frame.get_rect().h * scale)
-            if (scale == 1 and w != 0 and h != 0):
+            if scale == 1 and w != 0 and h != 0:
                 surface_frame = py.transform.scale(
                     surface_frame, (w, h)).convert_alpha()
-            if (scale != 1):
+            if scale != 1:
                 surface_frame = py.transform.scale(
                     surface_frame, (frame_width_scaled, frame_height_scaled)).convert_alpha()
-            if (flip):
+            if flip:
                 surface_frame = py.transform.flip(
                     surface_frame, True, False).convert_alpha()
 
             for i in range(repeat_frame):
                 lista.append(surface_frame)
         return lista
+    
+    @staticmethod
+    def debuggerMod(screen, color_main, color_top, color_bottom, color_left, color_right, rect_main, rects):
+        if DEBUG:
+            py.draw.rect(screen, color_main, rect_main)
+            py.draw.rect(screen, color_top, rects[TOP])
+            py.draw.rect(screen, color_bottom, rects[GROUND])
+            py.draw.rect(screen, color_left, rects[LEFT])
+            py.draw.rect(screen, color_right, rects[RIGHT])
