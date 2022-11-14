@@ -8,8 +8,12 @@ class Enemy(Character):
     def __init__(self, data) -> None:
         super().__init__(data)
 
-        self.__rect_sensor = py.Rect(
-            self._rect.centerx, self._rect.centery, W_WINDOWN-self._rect.centerx, 5)
+        self.__sensors = {
+        HORIZONTAL :py.Rect(self._rect.centerx, self._rect.centery, W_WINDOWN-self._rect.centerx, W_H_RECT_SENSOR),
+        VERTICAL :py.Rect(self._rect.centerx, self._rect.centery, W_H_RECT_SENSOR, H_WINDOWN-self._rect.centerx)
+        }
+        self.type_sensor = data['type_sensor']
+        self.__rect_sensor = self.__sensors[self.type_sensor]
         self.__sensor_activate = False
 
         self.__shots = []
@@ -40,12 +44,16 @@ class Enemy(Character):
     def update_position(self, pos):
         if not self._was_die:
             super().update_position(pos)
-            if self.orientation == RIGHT:
-                self.__rect_sensor.midleft = self._rect.center
-                self.__rect_sensor.w = W_WINDOWN-self._rect.centerx
-            elif self.orientation == LEFT:
-                self.__rect_sensor.midleft = (0, self._rect.centery)
-                self.__rect_sensor.w = self._rect.centerx
+            if self.type_sensor == HORIZONTAL:
+                if self.orientation == RIGHT:
+                    self.__rect_sensor.midleft = self._rect.center
+                    self.__rect_sensor.w = W_WINDOWN-self._rect.centerx
+                elif self.orientation == LEFT:
+                    self.__rect_sensor.midleft = (0, self._rect.centery)
+                    self.__rect_sensor.w = self._rect.centerx
+            elif self.type_sensor == VERTICAL:
+                self.__rect_sensor.midtop = self._rect.center
+                self.__rect_sensor.h = H_WINDOWN - self._rect.centery
         for shot in self.__shots:
             shot.update_position(self._rect.center)
 

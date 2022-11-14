@@ -14,6 +14,9 @@ class Player(Character):
 
     @score.setter
     def score(self, score): self.__score += score
+    
+    @property
+    def live(self): return self.__live
 
     def update(self, delta_ms):
         if not self._was_die:

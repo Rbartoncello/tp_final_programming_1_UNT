@@ -5,8 +5,7 @@ from auxiliar import Auxiliar
 
 
 def create_side_animation(data, name, side):
-    return Auxiliar.getSurfaceFromSpriteSheet(PATH_SOURCES + name + data['path'], data['cols'], data['rows'],
-                                              data[side])
+    return Auxiliar.getSurfaceFromSpriteSheet(PATH_SOURCES + name + data['path'], data['cols'], data['rows'],data[side])
 
 
 def create_sides_animation(data, name):
@@ -59,7 +58,7 @@ class Character:
     def was_die(
             self):
         return self._was_die and self._time_accumulation_die >= TIME_TO_DIE
-
+ 
     def update(self, delta_ms):
         self.do_animation(delta_ms, self._was_die)
         self.apply_gravity()

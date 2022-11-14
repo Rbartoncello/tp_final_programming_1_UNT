@@ -78,6 +78,7 @@
 		"width": 60,
 		"height": 100,
 		"status_init": "run",
+		"type_sensor": "horizontal",
 		"orientation_init": [
 			"left",
 			"right"
@@ -308,7 +309,6 @@
 		}
 	],
 	"platforms": [
-		{"x": 680, "y": 5, "width": 10, "height": 20, "path": "PIXEL ADVENTURE/Recursos/Terrain/Wall/2.png", "type": 1},
 		{"x": 680, "y": 25, "width": 10, "height": 20, "path": "PIXEL ADVENTURE/Recursos/Terrain/Wall/2.png", "type": 1},
 		{"x": 680, "y": 45, "width": 10, "height": 20, "path": "PIXEL ADVENTURE/Recursos/Terrain/Wall/2.png", "type": 1},
 		{"x": 680, "y": 65, "width": 10, "height": 20, "path": "PIXEL ADVENTURE/Recursos/Terrain/Wall/2.png", "type": 1},
@@ -426,7 +426,44 @@
 		{"x": 20, "y": 370, "width": 10, "height": 20, "path": "PIXEL ADVENTURE/Recursos/Terrain/Wall/2.png", "type": 1},
 		{"x": 20, "y": 390, "width": 10, "height": 20, "path": "PIXEL ADVENTURE/Recursos/Terrain/Wall/2.png", "type": 1},
 		{"x": 20, "y": 410, "width": 10, "height": 20, "path": "PIXEL ADVENTURE/Recursos/Terrain/Wall/2.png", "type": 1},
-		{"x": 20, "y": 430, "width": 10, "height": 20, "path": "PIXEL ADVENTURE/Recursos/Terrain/Wall/2.png", "type": 1}
+		{"x": 20, "y": 430, "width": 10, "height": 20, "path": "PIXEL ADVENTURE/Recursos/Terrain/Wall/2.png", "type": 1},
+
+		{"x": 20, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 40, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 60, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 80, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 100, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 120, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 140, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 160, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 180, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 200, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 220, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 240, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 260, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 280, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 300, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 320, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 340, "y": 10, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+
+		{"x": 360, "y": 10, "width": 10, "height": 20, "path": "PIXEL ADVENTURE/Recursos/Terrain/Wall/2.png", "type": 1},
+
+		{"x": 370, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 390, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 410, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 430, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 450, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 470, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 490, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 510, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 530, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 550, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 570, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 590, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 610, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 630, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 650, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1},
+		{"x": 670, "y": 20, "width": 20, "height": 10, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png", "type": 1}
 
 
 	]

@@ -11,12 +11,16 @@ class Level:
         self.platforms = []
         self.enemies = []
         self.fruits = []
-        self.player = None
+        self.__player = None
         self.screen = screen
         self.setup(data)
+        self.__timer = 0
+        
+    @property
+    def timer(self): return int(self.__timer)
 
     def setup(self, data):
-        self.player = Player(data['player'])
+        self.__player = Player(data['player'])
         self.enemies = [Enemy(data['enemy'])]
 
         for platform in data['platforms']:
@@ -28,11 +32,16 @@ class Level:
     def check_collisions(self):
         if self.enemies:
             for enemy in self.enemies:
-                enemy.check_collisions(self.platforms, self.player)
-        if self.player is not None: self.player.check_collisions(self.platforms, self.enemies, self.fruits)
+                enemy.check_collisions(self.platforms, self.__player)
+        if self.__player is not None:
+            self.__player.check_collisions(
+                self.platforms, self.enemies, self.fruits)
 
     def update(self, delta_ms):
-        if self.player is not None: self.player.update(delta_ms)
+        self.__timer += (delta_ms/1000)
+        
+        if self.__player is not None:
+            self.__player.update(delta_ms)
         if self.enemies:
             for enemy in self.enemies:
                 enemy.update(delta_ms)
@@ -41,16 +50,15 @@ class Level:
                 fruit.update(delta_ms)
 
     def draw(self):
-
         if self.platforms:
             for platform in self.platforms:
                 platform.draw(self.screen)
 
-        if self.player is not None:
-            if not self.player.was_die:
-                self.player.draw(self.screen)
+        if self.__player is not None:
+            if not self.__player.was_die:
+                self.__player.draw(self.screen)
             else:
-                self.player = None
+                self.__player = None
 
         if self.enemies:
             for i, enemy in enumerate(self.enemies):
@@ -65,6 +73,9 @@ class Level:
                     fruit.draw(self.screen)
                 else:
                     self.fruits.pop(i)
+
+    @property
+    def player(self): return self.__player
 
     def run(self, delta_ms):
         self.check_collisions()

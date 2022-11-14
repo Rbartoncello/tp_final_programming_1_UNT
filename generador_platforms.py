@@ -1,21 +1,21 @@
 from constantes import *
 
 dict = {
-    "x": 20,
-    "y": 10,
-    "width": 10,
-    "height": 20,
-    "path": "PIXEL ADVENTURE/Recursos/Terrain/Wall/2.png",
+    "x": 370,
+    "y": 20,
+    "width": 20,
+    "height": 10,
+    "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png",
     "type": 1
 }
 
 lista = []
 lista_final = []
 
-for i in range(int(22)):
+for i in range(int(17)):
     dict_2 = dict.copy()
 
-    dict_2['y'] += i * 20
+    dict_2['x'] += i * 20
 
     lista.append(dict_2)
 
