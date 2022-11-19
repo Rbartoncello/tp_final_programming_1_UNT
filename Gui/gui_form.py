@@ -1,30 +1,29 @@
-import pygame
+import pygame as py
 from pygame.locals import *
+from constantes import *
 
 
-class Form():
+class Form:
     forms_dict = {}
 
-    def __init__(self, name, master_surface, pos, side, color_bg, color_border, active):
+    def __init__(self, name, master_surface, pos, size, image_bg, color_bg, color_border, active=False):
         self.forms_dict[name] = self
         self.master_surface = master_surface
-        self.x = pos[0]
-        self.y = pos[1]
-        self.w = side[0]
-        self.h = side[1]
-        self.color_background = color_bg
-        self.color_border = color_border
+        self.pos = py.math.Vector2(pos)
+        self.size = size
+        if image_bg is not None:
+            self.surface = py.image.load(image_bg)
+            self.surface = py.transform.scale(
+                self.surface, size).convert_alpha()
+        else:
+            self.surface = py.Surface(size)
+            self.color_bg = color_bg
+            self.color_border = color_border
+            if self.color_bg is not None:
+                self.surface.fill(self.color_bg)
 
-        self.surface = pygame.Surface(side)
-        self.slave_rect = self.surface.get_rect()
-        self.slave_rect.x = pos[0]
-        self.slave_rect.y = pos[1]
+        self.slave_rect = self.surface.get_rect(topleft=pos)
         self.active = active
-        self.x = pos[0]
-        self.y = pos[1]
-
-        if (self.color_background != None):
-            self.surface.fill(self.color_background)
 
     def set_active(self, name):
         for aux_form in self.forms_dict.values():

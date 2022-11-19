@@ -9,8 +9,8 @@ class Enemy(Character):
         super().__init__(data)
 
         self.__sensors = {
-        HORIZONTAL :py.Rect(self._rect.centerx, self._rect.centery, W_WINDOWN-self._rect.centerx, W_H_RECT_SENSOR),
-        VERTICAL :py.Rect(self._rect.centerx, self._rect.centery, W_H_RECT_SENSOR, H_WINDOWN-self._rect.centerx)
+            HORIZONTAL: py.Rect(self._rect.centerx, self._rect.centery, W_WINDOWN-self._rect.centerx, W_H_RECT_SENSOR),
+            VERTICAL: py.Rect(self._rect.centerx, self._rect.centery, W_H_RECT_SENSOR, H_WINDOWN-self._rect.centerx)
         }
         self.type_sensor = data['type_sensor']
         self.__rect_sensor = self.__sensors[self.type_sensor]

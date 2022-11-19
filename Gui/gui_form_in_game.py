@@ -10,7 +10,7 @@ class FormInGame(Form):
     def __init__(self, name, master_surface, pos, size, color_bg, color_border, value, active):
         super().__init__(name, master_surface, pos, size, color_bg, color_border, active)
 
-        self.pause_button = Button(master=self,pos=(0, 0), size=(size[1], size[1]), color_background=None,color_border=None,image_background="PIXEL ADVENTURE/Recursos/gui/jungle/btn/pause.png",on_click=self.__on_click,on_click_param="form_menu_B",text=None,font="Verdana",font_size=30,font_color=WHITE)
+        self.pause_button = Button(master=self,pos=(0, 0), size=(size[1], size[1]), color_bg=None,color_border=None,image_bg="PIXEL ADVENTURE/Recursos/gui/jungle/btn/pause.png",on_click=self.__on_click,on_click_param="form_menu_B",text=None,font="Verdana",font_size=30,font_color=WHITE)
         
         self.score_display = DisplayBox(master=self, pos=(0, 0), size=(
             W_SCORE_TIMER*10, size[1]), color_bg=None, color_border=None, image_bg=PATH_BG_SCORE_DISPLAY, text="Time: 0   Score: 0", font="Verdana", font_size=30, font_color=BLACK)
@@ -19,14 +19,19 @@ class FormInGame(Form):
             120, size[1]), color_bg=None, color_border=None, image_bg=PATH_BG_LIVES_BAR, image_progress="pngwing.com.png", value=value.live, value_max=value.live)
 
         self.lista_widget = [self.score_display, self.lives_bar, self.pause_button]
+        
+        self.__is_pause = False
 
     def __on_click(self, parametro):
         print('click')
         print(self.timer)
+        self.__is_pause = not self.__is_pause
+        self.is_pause(self.__is_pause)
     
-    def update(self, lista_eventos, player, timer):
+    def update(self, lista_eventos, player, timer, is_pause):
         self.timer = timer
         self.lives_bar.value = player.live
+        self.is_pause = is_pause
         self.score_display.value = (timer, player.score)
 
         for aux_widget in self.lista_widget:

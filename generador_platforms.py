@@ -1,21 +1,28 @@
 from constantes import *
 
+x = 660
+y = 507
+
+w = 44
+h = 38
+amount = 4
+
 dict = {
-    "x": 370,
-    "y": 20,
-    "width": 20,
-    "height": 10,
-    "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/1.png",
+    "x": x,
+    "y": y,
+    "width": w,
+    "height": h,
+    "path": "PIXEL ADVENTURE/Recursos/Terrain/Block/2.png",
     "type": 1
 }
 
 lista = []
 lista_final = []
 
-for i in range(int(17)):
+for i in range(amount):
     dict_2 = dict.copy()
 
-    dict_2['x'] += i * 20
+    dict_2['x'] += i * w
 
     lista.append(dict_2)
 

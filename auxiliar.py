@@ -59,3 +59,14 @@ class Auxiliar:
             py.draw.rect(screen, color_bottom, rects[GROUND])
             py.draw.rect(screen, color_left, rects[LEFT])
             py.draw.rect(screen, color_right, rects[RIGHT])
+    
+    @staticmethod
+    def create_side_animation(data, path, side):
+        return Auxiliar.getSurfaceFromSpriteSheet(path, data['cols'], data['rows'], data[side])
+
+    @staticmethod
+    def create_sides_animation(data, path):
+        return {
+            RIGHT: Auxiliar.create_side_animation(data, path, RIGHT),
+            LEFT: Auxiliar.create_side_animation(data, path, LEFT)
+        }

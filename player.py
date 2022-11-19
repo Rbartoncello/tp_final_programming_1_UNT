@@ -55,7 +55,7 @@ class Player(Character):
             else:
                 self.status = IDLE
 
-    def check_collisions(self, platforms, enemies, fruits):
+    def check_collisions(self, platforms, enemies, fruits, tramps):
         if platforms:
             for platform in platforms:
                 if platform.side(RIGHT).colliderect(self.rects[LEFT]) and self.direction.x < 0:
@@ -86,3 +86,8 @@ class Player(Character):
                     fruit.pick_up()
                 if fruit.was_pick_up:
                     self.score = SCORE_FRUIT
+                    
+        if tramps:
+            for tramp in tramps:
+                if self._rect.colliderect(tramp.rect):
+                    self.die()

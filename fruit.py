@@ -3,15 +3,12 @@ from constantes import *
 from auxiliar import Auxiliar
 
 
-def create_animation(data):
-    return Auxiliar.getSurfaceFromSpriteSheet(data['path'], data['cols'], data['rows'])
-
-
 class Fruit:
     def __init__(self, data) -> None:
         self.__frame_index = 0
         self.__animations = {}
-        self.__create_animations(data)
+        self.__animations = {key: Auxiliar.getSurfaceFromSpriteSheet(
+            data['path'], data['cols'], data['rows']) for (key, data) in data['animations'].items()}
         self.__status = IDLE
         self.__image = self.__animations[self.__status][self.__frame_index]
         self.__rect = self.__image.get_rect(topleft=(data['x'], data['y']))
@@ -42,10 +39,6 @@ class Fruit:
         self.__was_collected = True
         self.__status = COLLECTED
         self.__frame_rate_ms = 50
-
-    def __create_animations(self, data):
-        for animation in data['animations']:
-            self.__animations[animation] = create_animation(data['animations'][animation])
 
     def update(self, delta_ms):
         self.do_animation(delta_ms)

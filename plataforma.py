@@ -3,11 +3,11 @@ from constantes import *
 from auxiliar import Auxiliar
 
 class Platform:
-    def __init__(self, data):
+    def __init__(self, data, pos):
         self.image = pygame.image.load(data['path'])
         self.image = pygame.transform.scale(
             self.image, (data['width'], data['height']))
-        self.rect = self.image.get_rect(topleft=(data['x'], data['y']))
+        self.rect = self.image.get_rect(topleft=(pos))
         self.rects = {
             TOP: pygame.Rect(self.rect.x+W_H_RECT, self.rect.bottom-W_H_RECT, self.rect.w-2*W_H_RECT, W_H_RECT),
             GROUND: pygame.Rect(self.rect.x+W_H_RECT, self.rect.top, self.rect.w-2*W_H_RECT, W_H_RECT),
