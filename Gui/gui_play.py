@@ -1,3 +1,4 @@
+import json
 import pygame as py
 from pygame.locals import *
 from constantes import *
@@ -6,8 +7,11 @@ from Gui.gui_form import Form
 
 from level import Level
 
+
+with open(FILE, 'r') as archivo:
+    data = json.load(archivo)
 class Play(Form):
-    def __init__(self, name, master_surface, pos, size, color_bg, color_border, data, active):
+    def __init__(self, name, master_surface, pos, size, color_bg, color_border, last_level,active):
         super().__init__(name, master_surface, pos, size, color_bg, color_border, active)
         self.level = Level(master_surface, data)
         self.form_in_game = FormInGame(
@@ -23,20 +27,23 @@ class Play(Form):
         print(self.clock.tick(FPS))
         self.flag = True
         self.cache = 0
-        
+        self.__current_level = last_level
+    
+    def current_level(self): 
+        return self.__current_level
     
     def update(self, list_event):
-        if self.flag:
-            self.cache = self.clock.tick(FPS)
-            print(self.cache)
-            self.flag = False
         if not self.level.lost():
-            self.level.run(self.clock.tick(FPS))
-            self.form_in_game.active = True
-            if self.form_in_game.active and not self.level.lost():
-                self.form_in_game.update(list_event, self.level.player, self.level.timer, self.level.set_pause)
+            if self.level.win():
+                self.__current_level+= 1
+                self.set_active(MENU_LEVELS)
+            else:
+                self.level.run(self.clock.tick(FPS))
+                self.form_in_game.active = True
+                if self.form_in_game.active and not self.level.lost():
+                    self.form_in_game.update(list_event, self.level.player, self.level.timer, self.level.set_pause)
         else:
-            self.set_active('game_over')
+            self.set_active(DISPLAY_GAME_OVER)
 
 
     def draw(self):

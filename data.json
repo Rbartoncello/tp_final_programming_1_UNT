@@ -130,182 +130,6 @@
 					"left": true
 				}
 			}
-		},
-		{
-			"x": 250,
-			"y": 200,
-			"width": 32,
-			"height": 32,
-			"animations": {
-				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Bananas.png",
-					"cols": 17,
-					"rows": 1,
-					"right": false,
-					"left": true
-				},
-				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
-					"cols": 6,
-					"rows": 1,
-					"right": false,
-					"left": true
-				}
-			}
-		},
-		{
-			"x": 300,
-			"y": 200,
-			"width": 32,
-			"height": 32,
-			"animations": {
-				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Cherries.png",
-					"cols": 17,
-					"rows": 1,
-					"right": false,
-					"left": true
-				},
-				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
-					"cols": 6,
-					"rows": 1,
-					"right": false,
-					"left": true
-				}
-			}
-		},
-		{
-			"x": 350,
-			"y": 200,
-			"width": 32,
-			"height": 32,
-			"animations": {
-				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Kiwi.png",
-					"cols": 17,
-					"rows": 1,
-					"right": false,
-					"left": true
-				},
-				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
-					"cols": 6,
-					"rows": 1,
-					"right": false,
-					"left": true
-				}
-			}
-		},
-		{
-			"x": 400,
-			"y": 200,
-			"width": 32,
-			"height": 32,
-			"animations": {
-				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Cherries.png",
-					"cols": 17,
-					"rows": 1,
-					"right": false,
-					"left": true
-				},
-				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
-					"cols": 6,
-					"rows": 1,
-					"right": false,
-					"left": true
-				}
-			}
-		},
-		{
-			"x": 450,
-			"y": 200,
-			"width": 32,
-			"height": 32,
-			"animations": {
-				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Melon.png",
-					"cols": 17,
-					"rows": 1,
-					"right": false,
-					"left": true
-				},
-				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
-					"cols": 6,
-					"rows": 1,
-					"right": false,
-					"left": true
-				}
-			}
-		},
-		{
-			"x": 500,
-			"y": 200,
-			"width": 32,
-			"height": 32,
-			"animations": {
-				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Orange.png",
-					"cols": 17,
-					"rows": 1,
-					"right": false,
-					"left": true
-				},
-				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
-					"cols": 6,
-					"rows": 1,
-					"right": false,
-					"left": true
-				}
-			}
-		},
-		{
-			"x": 550,
-			"y": 200,
-			"width": 32,
-			"height": 32,
-			"animations": {
-				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Pineapple.png",
-					"cols": 17,
-					"rows": 1,
-					"right": false,
-					"left": true
-				},
-				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
-					"cols": 6,
-					"rows": 1,
-					"right": false,
-					"left": true
-				}
-			}
-		},
-		{
-			"x": 600,
-			"y": 200,
-			"width": 32,
-			"height": 32,
-			"animations": {
-				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Strawberry.png",
-					"cols": 17,
-					"rows": 1,
-					"right": false,
-					"left": true
-				},
-				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
-					"cols": 6,
-					"rows": 1,
-					"right": false,
-					"left": true
-				}
-			}
 		}
 	],
 	"map":[
@@ -313,8 +137,8 @@
 		"*LLLLLLLLLLLLLLLLLLL*",
 		"WX    XXX        XX W",
 		"WX                  W",
-		"WXXX         XX     W",
-		"WXXX       XX    XXXW",
+		"WXXX                W",
+		"WXXXXXXXXXX  XXXXXXXW",
 		"WX    X          BBBW",
 		"WX    X          BBBW",
 		"W     X         XBBBW",
@@ -333,7 +157,7 @@
 	"tramps": [
 		{
 			"x": 288,
-			"y": 264,
+			"y": 364,
 			"width": 38,
 			"height": 38,
 			"animations": {

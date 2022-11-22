@@ -29,6 +29,9 @@ class Level:
         self.setup(data)
         self.__timer = 0
         self.__is_pause = False
+        self.display_win =None
+        self.display_lose =None
+        self.create_displays()
         
     @property
     def timer(self): return int(self.__timer)
@@ -36,8 +39,17 @@ class Level:
     @property
     def pause(self): return self.__is_pause
     
+    def create_displays(self):
+        self.display_win = None
+        self.display_lose = None
+
+    
+    
     def lost(self): 
         return self.__player == None or self.__player.was_die
+    
+    def win(self):
+        return not self.fruits
 
     def set_pause(self, state): self.__is_pause = state
 
