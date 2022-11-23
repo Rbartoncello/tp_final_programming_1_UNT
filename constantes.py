@@ -5,7 +5,7 @@ GROUND_LEVEL = 600
 FPS = 60
 
 
-DEBUG = False
+DEBUG = True
 TIME_TO_DIE = 2000
 FLOOR = 600
 
@@ -95,6 +95,8 @@ PATH_BUTTON_RANKING = 'images/gui/jungle/menu/prize.png'
 PATH_BUTTON_IMAGE_BG = 'images/gui/jungle/level_select/table.png'
 PATH_BUTTON_LEVELS_UNLOCK = 'images/gui/jungle/level_select/lock.png'
 PATH_GAME_OVER = 'images/gui/jungle/you_lose/header.png'
+PATH_HEADER_WIN = 'images/gui/jungle/you_win/header.png'
+
 PATH_BUTTON_LEVELS_NUMBER = {
     '1': 'images/gui/set_gui_01/Sand/Buttons/1.png',
     '2': 'images/gui/set_gui_01/Sand/Buttons/2.png',
@@ -122,6 +124,7 @@ MENU_INITIAL = 'menu_initial'
 MENU_LEVELS = 'menu_levels'
 DISPLAY_PLAY = 'display_play'
 DISPLAY_GAME_OVER = 'display_game_over'
+DISPLAY_WIN = 'display_win'
 
 
 BUTTON_SETTINGS = 'button_settings'

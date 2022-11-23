@@ -29,22 +29,21 @@ class MenuLevels(Form):
         self.__rect_image_header = self.__image_header.get_rect(
             midtop=(W_MENU/2, -15))
         
-        self.__last_level_unlock = 1
+        self.__last_level_unlock = 0
+        self.__stars_last_level_unlock = 0
         
-        self.play = Play(
-            name=DISPLAY_PLAY,
-            master_surface=master_surface,
-            pos=(0, 0),
-            size=(W_WINDOWN, H_WINDOWN),
-            color_bg=None, color_border=None,
-            last_level = self.__last_level_unlock,
-            active=False)
     
     @property    
     def last_level_unlock(self): return self.__last_level_unlock
     
     @last_level_unlock.setter
     def last_level_unlock(self, level): self.__last_level_unlock = level
+    
+    @property    
+    def stars_last_level_unlock(self): return self.__stars_last_level_unlock
+    
+    @stars_last_level_unlock.setter
+    def stars_last_level_unlock(self, level): self.__stars_last_level_unlock = level
 
     def create_levels_buttons(self):
         level = 0
@@ -62,7 +61,6 @@ class MenuLevels(Form):
                     text=None, font=None, font_size=None, font_color=None,
                     level=level
                 ))
-                self.unlock_button_level(level)
 
     def create_exit_button(self, w):
         self.__button_exit = Button(
@@ -76,12 +74,10 @@ class MenuLevels(Form):
         )
 
     def unlock_button_level(self, level):
-        if level == 1:
             self.__buttons_levels[level-1].unlock = True
-        # self.unlock_buttons()
         
-    def update_buttons(self, stars):
-        self.__buttons_levels[self.__last_level_unlock-2].set_star(stars)
+    def update_buttons(self):
+        self.__buttons_levels[self.__last_level_unlock-2].set_star(self.__stars_last_level_unlock)
         self.__buttons_levels[self.__last_level_unlock-1].unlock = True
 
     def unlock_buttons(self):
@@ -100,9 +96,7 @@ class MenuLevels(Form):
 
     def update(self, lista_eventos):
         self.__button_exit.update(lista_eventos)
-        if self.play.level.win():
-            self.__last_level_unlock+=1
-        self.update_buttons(3)
+        self.update_buttons()
         for button in self.__buttons_levels:
             button.update(lista_eventos)
 

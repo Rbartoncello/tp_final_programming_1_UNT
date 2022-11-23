@@ -50,6 +50,17 @@ class Level:
     
     def win(self):
         return not self.fruits
+    
+    def stars(self):
+        stars = 0
+        if not self.fruits:
+            if not self.enemies and self.timer < 30:
+                stars = 3
+            elif not self.enemies or self.timer < 30:
+                stars = 2
+            else:
+                stars = 1
+        return stars
 
     def set_pause(self, state): self.__is_pause = state
 

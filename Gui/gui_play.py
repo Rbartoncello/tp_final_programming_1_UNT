@@ -11,7 +11,7 @@ from level import Level
 with open(FILE, 'r') as archivo:
     data = json.load(archivo)
 class Play(Form):
-    def __init__(self, name, master_surface, pos, size, color_bg, color_border, last_level,active):
+    def __init__(self, name, master_surface, pos, size, color_bg, color_border,active):
         super().__init__(name, master_surface, pos, size, color_bg, color_border, active)
         self.level = Level(master_surface, data)
         self.form_in_game = FormInGame(
@@ -24,19 +24,21 @@ class Play(Form):
             active=False)
         self.__is_pause = False
         self.clock = py.time.Clock()
-        print(self.clock.tick(FPS))
         self.flag = True
         self.cache = 0
-        self.__current_level = last_level
+        self.__current_level = 1
     
     def current_level(self): 
         return self.__current_level
+    
+    def stars(self): 
+        return self.level.stars()
     
     def update(self, list_event):
         if not self.level.lost():
             if self.level.win():
                 self.__current_level+= 1
-                self.set_active(MENU_LEVELS)
+                self.set_active(DISPLAY_WIN)
             else:
                 self.level.run(self.clock.tick(FPS))
                 self.form_in_game.active = True

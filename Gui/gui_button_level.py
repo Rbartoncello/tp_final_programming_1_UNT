@@ -43,9 +43,10 @@ class ButtonLevel(Button):
     def render(self):
         super().render()
         if self.__unlock:
+            self.__image_algo = py.transform.scale(py.image.load(PATH_BUTTON_IMAGE_BG), self.image_bg.get_size()).convert_alpha()
+            self.image_bg.blit(self.__image_algo, self.image_bg.get_rect())
             self.image_bg.blit(self.__image_number, self.__pos_image_number)
             self.image_bg.blit(self.__image_stars, self.__pos_image_stars)
-            
         else:
             self.image_bg.blit(self.__image_lock, self.__pos_image_lock)
 
