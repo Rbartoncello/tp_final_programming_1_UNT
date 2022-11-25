@@ -1,10 +1,10 @@
 from constantes import *
 from Gui.gui_play import Play
 from Gui.gui_menu_initial import MenuInitial
-from Gui.gui_game_over import GameOver
 from Gui.gui_display_end_level import DisplayEndLevel
-
+from Gui.gui_pause import Pause
 from Gui.gui_menu_levels import MenuLevels
+
 
 class StateGame:
     def __init__(self, screen) -> None:
@@ -41,12 +41,12 @@ class StateGame:
             size=(W_MENU, H_MENU),
             image_bg=MENU_BG,
             color_bg=None, color_border=None,
-            active=False, 
+            active=False,
             scale=0.8,
             stars=0,
             header=PATH_GAME_OVER
-            )
-        
+        )
+
         self.display_win = DisplayEndLevel(
             name=DISPLAY_WIN,
             master_surface=screen,
@@ -54,20 +54,37 @@ class StateGame:
             size=(W_MENU, H_MENU),
             image_bg=MENU_BG,
             color_bg=None, color_border=None,
-            active=False, 
+            active=False,
             scale=0.8,
             stars=0,
             header=PATH_HEADER_WIN)
+
+        self.display_pause = Pause(
+            name=DISPLAY_PAUSE,
+            master_surface=screen,
+            pos=POS_MENU_LEVELS,
+            size=(W_MENU, H_MENU),
+            image_bg=MENU_BG,
+            color_bg=None, color_border=None,
+            active=False,
+            scale=0.8,
+            is_pause=self.play.level.set_pause)
+
+        self.states = [self.menu_initial, self.levels, self.play,self.display_lose, self.display_win, self.display_pause]
         
-        self.states = [self.menu_initial, self.levels, self.play, self.display_lose, self.display_win]
-        
+
     def run(self, list_event):
         for state in self.states:
             if state.active:
                 if state == self.levels:
-                    state.last_level_unlock = self.play.current_level()
+                    state.last_level_unlock = self.play.current_level
                     state.stars_last_level_unlock = self.play.stars()
                 elif state == self.display_win:
                     state.set_stars(self.play.stars())
+                elif state == self.play:
+                    state.current_level = self.levels.level_selected
                 state.update(list_event)
                 state.draw()
+        print(self.levels.last_level_unlock)
+        print(self.play.current_level)
+        

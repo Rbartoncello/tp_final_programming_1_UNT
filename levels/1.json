@@ -99,10 +99,10 @@
 				"left": false
 			}
 		},
-		"amount_shot": 1,
+		"amount_shot": 5,
 		"shot": {
 			"path": "Leafs.png",
-			"time_shooting": 1000,
+			"time_shooting": 500,
 			"speed": 2,
 			"cols": 2,
 			"rows": 1
@@ -110,7 +110,7 @@
 	}],
 	"fruits": [
 		{
-			"x": 300,
+			"x": 60000,
 			"y": 200,
 			"width": 32,
 			"height": 32,

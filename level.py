@@ -4,7 +4,8 @@ from player import Player
 from enemy import Enemy
 from fruit import Fruit
 from tramp import Tramp
-
+import time
+import json
 
 from constantes import *
 
@@ -16,9 +17,13 @@ def set_pos_platform(index, displacenment):
 def adjust_pos_next_platform(pos, displacenment):
     return pos + displacenment
 
+def data_level(level):
+    with open(FILE.format(level), 'r') as archivo:
+        data = json.load(archivo)
+    return data
 
 class Level:
-    def __init__(self, screen, data) -> None:
+    def __init__(self, screen, level) -> None:
         self.__player = None
         self.platforms = []
         self.enemies = []
@@ -26,79 +31,87 @@ class Level:
         self.__tramps = []
         self.__player = None
         self.screen = screen
-        self.setup(data)
-        self.__timer = 0
+        self.setup(data_level(level))
+        self.__timer = time.time()
         self.__is_pause = False
-        self.display_win =None
-        self.display_lose =None
-        self.create_displays()
-        
+        self.start_time = time.time()
+        self.last_time = self.start_time
+        self.time_in_pause = 0
+        self.__level = level
+
+    @property
+    def level(self): return self.__level
+
     @property
     def timer(self): return int(self.__timer)
-    
+
     @property
     def pause(self): return self.__is_pause
-    
-    def create_displays(self):
-        self.display_win = None
-        self.display_lose = None
 
-    
-    
-    def lost(self): 
+    @property
+    def lost(self):
         return self.__player == None or self.__player.was_die
-    
+
+    @property
     def win(self):
         return not self.fruits
-    
+
+    @property
     def stars(self):
-        stars = 0
+        stars = 1
         if not self.fruits:
             if not self.enemies and self.timer < 30:
                 stars = 3
             elif not self.enemies or self.timer < 30:
                 stars = 2
-            else:
-                stars = 1
         return stars
-
-    def set_pause(self, state): self.__is_pause = state
-
+    
+    def set_pause(self, state):
+        if state:
+            self.last_time = time.time()
+            self.flag = True
+        self.__is_pause = state
 
     def create_map(self, maps, platforms):
-        for row_index,row in enumerate(maps):
-            for col_index,cell in enumerate(row):
+        for row_index, row in enumerate(maps):
+            for col_index, cell in enumerate(row):
                 for (platform, data) in platforms.items():
                     if platform == cell:
-                        pos = py.math.Vector2(col_index * W_H_PLATFORM, row_index * W_H_PLATFORM)
-                        
+                        pos = py.math.Vector2(
+                            col_index * W_H_PLATFORM, row_index * W_H_PLATFORM)
                         if cell == WALL_PLATFORM:
                             if pos.x < int(W_WINDOWN/2):
-                                pos.x = set_pos_platform(col_index, data['width'])
+                                pos.x = set_pos_platform(
+                                    col_index, data['width'])
                             self.platforms.append(Platform(data, pos))
-                            pos.y = adjust_pos_next_platform(pos.y, data['height'])
+                            pos.y = adjust_pos_next_platform(
+                                pos.y, data['height'])
                         elif cell == BORDER_PLATFORM:
                             if pos.y < int(H_WINDOWN/2):
-                                pos.y = set_pos_platform(row_index, data['height'])
+                                pos.y = set_pos_platform(
+                                    row_index, data['height'])
                             self.platforms.append(Platform(data, pos))
-                            pos.x = adjust_pos_next_platform(pos.x, data['width'])
-                        
+                            pos.x = adjust_pos_next_platform(
+                                pos.x, data['width'])
+
                         elif cell == CORNER_PLATFORM:
                             if pos.x < int(W_WINDOWN/2):
-                                pos.x = set_pos_platform(col_index, data['width'])
+                                pos.x = set_pos_platform(
+                                    col_index, data['width'])
                             if pos.y < int(H_WINDOWN/2):
-                                pos.y = set_pos_platform(row_index, data['height'])
-                        
+                                pos.y = set_pos_platform(
+                                    row_index, data['height'])
+
                         self.platforms.append(Platform(data, pos))
-    
+
     def setup(self, data):
         self.__player = Player(data['player'])
         self.enemies = [Enemy(enemy) for enemy in data['enemy']]
-        
+
         self.create_map(data['map'], data['platforms'])
-        
+
         self.fruits = [Fruit(fruit) for fruit in data['fruits']]
-        
+
         self.__tramps = [Tramp(tramp) for tramp in data['tramps']]
 
     def check_collisions(self):
@@ -109,10 +122,18 @@ class Level:
             self.__player.check_collisions(
                 self.platforms, self.enemies, self.fruits, self.__tramps)
 
+    def was_not_pause(self):
+        return int(self.last_time) == int(self.start_time)
+
     def update(self, delta_ms):
-        
         if not self.__is_pause:
-            self.__timer += (delta_ms/1000)
+            if self.was_not_pause():
+                self.__timer = (time.time() - self.start_time)
+            else:
+                if self.flag:
+                    self.time_in_pause += time.time() - self.last_time
+                    self.flag = False
+                self.__timer = (time.time() - self.start_time) - (self.time_in_pause)
 
             if self.__player is not None:
                 self.__player.update(delta_ms)
@@ -126,14 +147,14 @@ class Level:
                 for tramp in self.__tramps:
                     tramp.update(delta_ms)
 
+    def draw_objects_maps(self, objects):
+        if objects:
+            for item in objects:
+                item.draw(self.screen)
+    
     def draw(self):
-        if self.__tramps:
-            for tramp in self.__tramps:
-                tramp.draw(self.screen)
-        
-        if self.platforms:
-            for platform in self.platforms:
-                platform.draw(self.screen)
+        self.draw_objects_maps(self.__tramps)
+        self.draw_objects_maps(self.platforms)
 
         if self.__player is not None:
             if not self.__player.was_die:

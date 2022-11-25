@@ -5,7 +5,7 @@ from Gui.gui_form import Form
 
 
 class DisplayEndLevel(Form):
-    def __init__(self, name, master_surface, pos, size, image_bg, color_bg, color_border, active, scale, stars,header):
+    def __init__(self, name, master_surface, pos, size, image_bg, color_bg, color_border, active, scale, stars=None,header=None):
         super().__init__(name, master_surface, pos, size,
                          image_bg, color_bg, color_border, active)
 
@@ -24,9 +24,12 @@ class DisplayEndLevel(Form):
         self.__rect_image_header = self.__image_header.get_rect(
             midtop=(W_MENU/2, 60))
         
-        self.__image_stars = py.image.load(PATH_BUTTON_LEVELS_STAR[str(stars)])
-        self.__image_stars = py.transform.rotozoom(self.__image_stars, 0, 1.5).convert_alpha()
-        self.__rect_image_stars = self.__image_stars.get_rect(center=(W_MENU/2, H_MENU/2+50))
+        if not stars is None:
+            self.__image_stars = py.image.load(PATH_BUTTON_LEVELS_STAR[str(stars)])
+            self.__image_stars = py.transform.rotozoom(self.__image_stars, 0, 1.5).convert_alpha()
+            self.__rect_image_stars = self.__image_stars.get_rect(center=(W_MENU/2, H_MENU/2+50))
+        else: 
+            self.__image_stars = None
 
     def update(self, lista_eventos):
         self.time_accumulation_delay += self.clock.tick(FPS)
@@ -38,7 +41,8 @@ class DisplayEndLevel(Form):
         super().draw()
         self.surface.blit(self.__image_bg, self.__rect_image_bg)
         self.surface.blit(self.__image_header, self.__rect_image_header)
-        self.surface.blit(self.__image_stars, self.__rect_image_stars)
+        if not self.__image_stars is None:
+            self.surface.blit(self.__image_stars, self.__rect_image_stars)
     def set_stars(self, stars): 
         self.__image_stars = py.image.load(PATH_BUTTON_LEVELS_STAR[str(stars)]) 
         self.__image_stars = py.transform.rotozoom(self.__image_stars, 0, 1.5).convert_alpha()
