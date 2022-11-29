@@ -20,34 +20,38 @@ class MenuLevels(Form):
 
         self.__image_bg = py.image.load(PATH_BG_SELECT_LEVELS)
         self.__image_bg = py.transform.scale(
-            self.__image_bg, (W_MENU-150, H_MENU-150)).convert_alpha()
+            self.__image_bg, (W_MENU - 150, H_MENU - 150)).convert_alpha()
         self.__rect_image_bg = self.surface.get_rect(topleft=(75, 75))
 
         self.__image_header = py.image.load(PATH_HEADER_SELECT_LEVELS)
         self.__image_header = py.transform.rotozoom(
             self.__image_header, 0, 0.6).convert_alpha()
         self.__rect_image_header = self.__image_header.get_rect(
-            midtop=(W_MENU/2, -15))
-        
+            midtop=(W_MENU / 2, -15))
+
         self.__last_level_unlock = 1
         self.__level_selected = 1
         self.__stars_last_level_unlock = 0
-        
-    
-    @property    
-    def last_level_unlock(self): return self.__last_level_unlock
-    
-    @property    
-    def level_selected(self): return self.__level_selected
-    
+
+    @property
+    def last_level_unlock(self):
+        return self.__last_level_unlock
+
+    @property
+    def level_selected(self):
+        return self.__level_selected
+
     @last_level_unlock.setter
-    def last_level_unlock(self, level): self.__last_level_unlock = level
-    
-    @property    
-    def stars_last_level_unlock(self): return self.__stars_last_level_unlock
-    
+    def last_level_unlock(self, level):
+        self.__last_level_unlock = level
+
+    @property
+    def stars_last_level_unlock(self):
+        return self.__stars_last_level_unlock
+
     @stars_last_level_unlock.setter
-    def stars_last_level_unlock(self, level): self.__stars_last_level_unlock = level
+    def stars_last_level_unlock(self, level):
+        self.__stars_last_level_unlock = level
 
     def __create_levels_buttons(self):
         level = 0
@@ -69,7 +73,7 @@ class MenuLevels(Form):
     def __create_exit_button(self, w):
         self.__button_exit = Button(
             master=self,
-            pos=((w/2)+250, 90),
+            pos=((w / 2) + 250, 90),
             size=SIZE_BUTTON_EXIT,
             color_bg=None, color_border=None,
             image_bg=PATH_BUTTON_CLOSE,
@@ -78,11 +82,11 @@ class MenuLevels(Form):
         )
 
     def __unlock_button_level(self, level):
-            self.__buttons_levels[level-1].unlock = True
-        
+        self.__buttons_levels[level - 1].unlock = True
+
     def __update_buttons(self):
-        self.__buttons_levels[self.__last_level_unlock-2].set_star(self.__stars_last_level_unlock)
-        self.__buttons_levels[self.__last_level_unlock-1].unlock = True
+        self.__buttons_levels[self.__last_level_unlock - 2].set_star(self.__stars_last_level_unlock)
+        self.__buttons_levels[self.__last_level_unlock - 1].unlock = True
 
     def __unlock_buttons(self):
         for button in self.__buttons_levels:
@@ -97,11 +101,11 @@ class MenuLevels(Form):
         if DEBUG: print(parametro)
         self.set_active(parametro)
 
-    def update(self, lista_eventos):
-        self.__button_exit.update(lista_eventos)
+    def update(self, lista_event):
+        self.__button_exit.update(lista_event)
         self.__update_buttons()
         for button in self.__buttons_levels:
-            button.update(lista_eventos)
+            button.update(lista_event)
 
     def draw(self):
         super().draw()

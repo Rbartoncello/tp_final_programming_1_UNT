@@ -70,21 +70,18 @@ class StateGame:
             scale=0.8,
             is_pause=self.play.level.set_pause)
 
-        self.states = [self.menu_initial, self.levels, self.play,self.display_lose, self.display_win, self.display_pause]
-        
+        self.states = [self.menu_initial, self.levels, self.play, self.display_lose, self.display_win,
+                       self.display_pause]
 
     def run(self, list_event):
         for state in self.states:
             if state.active:
                 if state == self.levels:
                     state.last_level_unlock = self.play.current_level
-                    state.stars_last_level_unlock = self.play.stars()
                 elif state == self.display_win:
                     state.set_stars(self.play.stars())
+                    self.levels.stars_last_level_unlock = self.play.stars()
                 elif state == self.play:
                     state.current_level = self.levels.level_selected
                 state.update(list_event)
                 state.draw()
-        print(self.levels.last_level_unlock)
-        print(self.play.current_level)
-        

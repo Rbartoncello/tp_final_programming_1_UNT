@@ -24,6 +24,7 @@ class Play(Form):
         self.flag = True
         self.cache = 0
         self.__current_level = 1
+        self.__score = 0
     
     @property
     def current_level(self): 
@@ -46,6 +47,7 @@ class Play(Form):
                     self.flag = False
                 elif self.level.win:
                     self.__current_level += 1
+                    self.__score += self.level.score
                     self.set_active(DISPLAY_WIN)
                     self.flag = True
                 else:
@@ -61,3 +63,6 @@ class Play(Form):
     def draw(self):
         if self.form_in_game.active and not self.level.lost:
             self.form_in_game.draw()
+            
+    def reset_level(self, level):
+        self.level.reset(level)

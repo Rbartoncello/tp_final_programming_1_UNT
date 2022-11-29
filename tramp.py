@@ -7,14 +7,14 @@ from auxiliar import Auxiliar
 class Tramp:
     def __init__(self, data) -> None:
         self.__frame_index = 0
-        self.__animations = {key: Auxiliar.getSurfaceFromSpriteSheet(data['path'], data['cols'], data['rows']) for (key, data) in data['animations'].items()}
+        self.__animations = {key: Auxiliar.getSurfaceFromSpriteSheet(data['path'], data['cols'], data['rows']) for
+                             (key, data) in data['animations'].items()}
         self.__status = 'off'
         self.__image = self.__animations[self.__status][self.__frame_index]
         self.__rect = self.__image.get_rect(center=(data['x'], data['y']))
         self.__time_accumulation_animation = 0
         self.__frame_rate_ms = 35
-    
-    
+
     @property
     def rect(self):
         return self.__rect

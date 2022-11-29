@@ -4,9 +4,7 @@ import sys
 from constantes import *
 from state_game import StateGame
 
-
 flags = DOUBLEBUF
-
 
 screen = py.display.set_mode((W_WINDOWN, H_WINDOWN), flags, 16)
 py.init()
@@ -21,7 +19,6 @@ while True:
             sys.exit()
 
     screen.fill('black')
-
 
     state_game.run(list_event)
 

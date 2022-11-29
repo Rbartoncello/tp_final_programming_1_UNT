@@ -50,7 +50,7 @@ class ButtonLevel(Button):
         else:
             self.image_bg.blit(self.__image_lock, self.__pos_image_lock)
 
-    def update(self, lista_eventos):
+    def update(self, lista_event):
         mousePos = py.mouse.get_pos()
         self.state = M_STATE_NORMAL
         if self.slave_rect_collide.collidepoint(mousePos):
@@ -59,7 +59,7 @@ class ButtonLevel(Button):
             else:
                 self.state = M_STATE_HOVER
 
-        for evento in lista_eventos:
+        for evento in lista_event:
             if evento.type == py.MOUSEBUTTONDOWN:
                 if self.slave_rect_collide.collidepoint(evento.pos) and self.__unlock:
                     self.on_click(self.on_click_param)

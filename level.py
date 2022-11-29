@@ -17,10 +17,17 @@ def set_pos_platform(index, displacenment):
 def adjust_pos_next_platform(pos, displacenment):
     return pos + displacenment
 
+
 def data_level(level):
     with open(FILE.format(level), 'r') as archivo:
         data = json.load(archivo)
     return data
+
+def data_player():
+    with open(FILE_PLAYER, 'r') as archivo:
+        data = json.load(archivo)
+    return data
+
 
 class Level:
     def __init__(self, screen, level) -> None:
@@ -29,7 +36,6 @@ class Level:
         self.enemies = []
         self.fruits = []
         self.__tramps = []
-        self.__player = None
         self.screen = screen
         self.setup(data_level(level))
         self.__timer = time.time()
@@ -38,23 +44,31 @@ class Level:
         self.last_time = self.start_time
         self.time_in_pause = 0
         self.__level = level
+        self.__score = 0
 
     @property
-    def level(self): return self.__level
+    def level(self):
+        return self.__level
 
     @property
-    def timer(self): return int(self.__timer)
+    def timer(self):
+        return int(self.__timer)
 
     @property
-    def pause(self): return self.__is_pause
+    def pause(self):
+        return self.__is_pause
 
     @property
     def lost(self):
-        return self.__player == None or self.__player.was_die
+        return self.__player is None or self.__player.was_die
 
     @property
     def win(self):
         return not self.fruits
+
+    @property
+    def score(self):
+        return self.__score
 
     @property
     def stars(self):
@@ -65,7 +79,7 @@ class Level:
             elif not self.enemies or self.timer < 30:
                 stars = 2
         return stars
-    
+
     def set_pause(self, state):
         if state:
             self.last_time = time.time()
@@ -80,32 +94,31 @@ class Level:
                         pos = py.math.Vector2(
                             col_index * W_H_PLATFORM, row_index * W_H_PLATFORM)
                         if cell == WALL_PLATFORM:
-                            if pos.x < int(W_WINDOWN/2):
+                            if pos.x < int(W_WINDOWN / 2):
                                 pos.x = set_pos_platform(
                                     col_index, data['width'])
                             self.platforms.append(Platform(data, pos))
                             pos.y = adjust_pos_next_platform(
                                 pos.y, data['height'])
                         elif cell == BORDER_PLATFORM:
-                            if pos.y < int(H_WINDOWN/2):
+                            if pos.y < int(H_WINDOWN / 2):
                                 pos.y = set_pos_platform(
                                     row_index, data['height'])
                             self.platforms.append(Platform(data, pos))
                             pos.x = adjust_pos_next_platform(
                                 pos.x, data['width'])
-
                         elif cell == CORNER_PLATFORM:
-                            if pos.x < int(W_WINDOWN/2):
+                            if pos.x < int(W_WINDOWN / 2):
                                 pos.x = set_pos_platform(
                                     col_index, data['width'])
-                            if pos.y < int(H_WINDOWN/2):
+                            if pos.y < int(H_WINDOWN / 2):
                                 pos.y = set_pos_platform(
                                     row_index, data['height'])
 
                         self.platforms.append(Platform(data, pos))
 
     def setup(self, data):
-        self.__player = Player(data['player'])
+        self.__player = Player(data_player())
         self.enemies = [Enemy(enemy) for enemy in data['enemy']]
 
         self.create_map(data['map'], data['platforms'])
@@ -126,32 +139,33 @@ class Level:
         return int(self.last_time) == int(self.start_time)
 
     def update(self, delta_ms):
-        if not self.__is_pause:
-            if self.was_not_pause():
-                self.__timer = (time.time() - self.start_time)
-            else:
-                if self.flag:
-                    self.time_in_pause += time.time() - self.last_time
-                    self.flag = False
-                self.__timer = (time.time() - self.start_time) - (self.time_in_pause)
+        self.__score = self.__player.score
 
-            if self.__player is not None:
-                self.__player.update(delta_ms)
-            if self.enemies:
-                for enemy in self.enemies:
-                    enemy.update(delta_ms)
-            if self.fruits:
-                for fruit in self.fruits:
-                    fruit.update(delta_ms)
-            if self.__tramps:
-                for tramp in self.__tramps:
-                    tramp.update(delta_ms)
+        
+        if self.was_not_pause():
+            self.__timer = (time.time() - self.start_time)
+        else:
+            if self.flag:
+                self.time_in_pause += time.time() - self.last_time
+                self.flag = False
+            self.__timer = (time.time() - self.start_time) - (self.time_in_pause)
+        if self.__player is not None:
+            self.__player.update(delta_ms)
+        if self.enemies:
+            for enemy in self.enemies:
+                enemy.update(delta_ms)
+        if self.fruits:
+            for fruit in self.fruits:
+                fruit.update(delta_ms)
+        if self.__tramps:
+            for tramp in self.__tramps:
+                tramp.update(delta_ms)
 
     def draw_objects_maps(self, objects):
         if objects:
             for item in objects:
                 item.draw(self.screen)
-    
+
     def draw(self):
         self.draw_objects_maps(self.__tramps)
         self.draw_objects_maps(self.platforms)
@@ -177,9 +191,15 @@ class Level:
                     self.fruits.pop(i)
 
     @property
-    def player(self): return self.__player
+    def player(self):
+        return self.__player
 
     def run(self, delta_ms):
         self.check_collisions()
         self.update(delta_ms)
         self.draw()
+        
+    def reset(self, level):
+        self.setup(data_level(level))
+        self.__timer = 0
+        self.__score = 0

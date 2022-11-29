@@ -50,7 +50,7 @@ class Character:
 
     def apply_gravity(self):
         self.direction.y += self.gravity
-        self.update_position(self.direction)
+        self.update_position((0, self.direction.y))
 
     def jump(self, collided=False):
         if (self.status != JUMP and self.status != FALL) or collided:
