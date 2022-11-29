@@ -12,13 +12,16 @@ class MenuInitial(Form):
         super().__init__(name, master_surface, pos, size, image_bg, color_bg, color_border, active)
 
         self.__button_settings = self.create_button(
-            ((size[0] / 2) - 300, (size[1] / 2)), SIZE_BUTTON_MENU_INITIAL, PATH_BUTTON_SETTINGS, self.__on_click_button_settings, BUTTON_SETTINGS)
+            ((size[0] / 2) - 300, (size[1] / 2)), SIZE_BUTTON_MENU_INITIAL, PATH_BUTTON_SETTINGS,
+            self.__on_click_button_settings, BUTTON_SETTINGS)
 
         self.__button_start = self.create_button(
-            ((size[0] / 2) - 75, (size[1] / 2)), SIZE_BUTTON_MENU_INITIAL, PATH_BUTTON_PLAY, self.__on_click_button_start, MENU_LEVELS)
+            ((size[0] / 2) - 75, (size[1] / 2)), SIZE_BUTTON_MENU_INITIAL, PATH_BUTTON_PLAY,
+            self.__on_click_button_start, MENU_LEVELS)
 
         self.__button_exit = self.create_button(
-            ((size[0] / 2) + 150, (size[1] / 2)), SIZE_BUTTON_MENU_INITIAL, PATH_BUTTON_CLOSE, self.__on_click_button_exit, BUTTON_EXIT)
+            ((size[0] / 2) + 150, (size[1] / 2)), SIZE_BUTTON_MENU_INITIAL, PATH_BUTTON_CLOSE,
+            self.__on_click_button_exit, BUTTON_EXIT)
 
         self.__button_ranking = self.create_button(
             (size[0] - 150, 50), (100, 100), PATH_BUTTON_RANKING, self.__on_click_button_ranking, BUTTON_RANKNG)
@@ -64,9 +67,9 @@ class MenuInitial(Form):
         py.quit()
         sys.exit()
 
-    def update(self, lista_eventos):
+    def update(self, lista_event):
         for aux_widget in self.__lista_widget:
-            aux_widget.update(lista_eventos)
+            aux_widget.update(lista_event)
 
     def draw(self):
         super().draw()

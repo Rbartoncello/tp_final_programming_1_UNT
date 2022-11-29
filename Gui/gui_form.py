@@ -33,7 +33,7 @@ class Form:
     def render(self):
         pass
 
-    def update(self, lista_eventos):
+    def update(self, lista_event):
         pass
 
     def draw(self):

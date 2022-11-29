@@ -49,20 +49,21 @@ M_BRIGHT_CLICK = GRAY11
 
 """ MAPS ITEMS """
 
-WALL_PLATFORM = 'W'
-BORDER_PLATFORM = 'L'
-CORNER_PLATFORM = '*'
+WALL_PLATFORM = '3'
+BORDER_PLATFORM = '4'
+CORNER_PLATFORM = '5'
 
 
 """ SIZES """
-W_WINDOWN = 924
-H_WINDOWN = 616
+W_WINDOWN = 1008
+H_WINDOWN = 674
 W_H_RECT = 6
 W_H_RECT_SENSOR = 5
 H_FORM_IN_GAME = 50
 W_SCORE_TIMER = len('Timer: 0000        Score: 0000')
-W_H_PLATFORM = 44
+W_H_PLATFORM = 48
 SIZE_BUTTON_MENU_INITIAL = (150, 150)
+SIZE_BUTTONS_PAUSE = (100, 100)
 SIZE_BUTTON_EXIT = (75, 75)
 SIZE_BUTTON_LEVEL = (125, 125)
 W_H_BUTTON_LEVEL = 125
@@ -82,7 +83,9 @@ POS_MENU_LEVELS = (W_WINDOWN / 2 - W_MENU / 2, H_WINDOWN / 2 - H_MENU / 2)
 
 """ PATHS """
 
-FILE = './data.json'
+FILE = './data/levels/{}.json'
+FILE_PLAYER = './data/player/data.json'
+
 PATH_SOURCES = "PIXEL ADVENTURE/Recursos/"
 PATH_BG_SCORE_DISPLAY = "PIXEL ADVENTURE/Recursos/gui/set_gui_01/Sand/Bars/Bar_Background01.png"
 PATH_BG_LIVES_BAR = "PIXEL ADVENTURE/Recursos/gui/set_gui_01/Sand/Bars/Bar_Background01.png"
@@ -92,9 +95,17 @@ PATH_BUTTON_CLOSE = 'images/gui/jungle/btn/close.png'
 PATH_BUTTON_SETTINGS = 'images/gui/jungle/btn/settings.png'
 PATH_BUTTON_PLAY = 'images/gui/jungle/btn/play.png'
 PATH_BUTTON_RANKING = 'images/gui/jungle/menu/prize.png'
+PATH_BUTTON_PAUSE = 'images/gui/jungle/btn/pause.png'
+PATH_BUTTON_MENU = 'images/gui/jungle/btn/menu.png'
+PATH_BUTTON_RESTART = 'images/gui/jungle/btn/restart.png'
+
 PATH_BUTTON_IMAGE_BG = 'images/gui/jungle/level_select/table.png'
 PATH_BUTTON_LEVELS_UNLOCK = 'images/gui/jungle/level_select/lock.png'
 PATH_GAME_OVER = 'images/gui/jungle/you_lose/header.png'
+PATH_HEADER_WIN = 'images/gui/jungle/you_win/header.png'
+PATH_HEADER_PAUSE = 'images/gui/jungle/pause/header.png'
+
+
 PATH_BUTTON_LEVELS_NUMBER = {
     '1': 'images/gui/set_gui_01/Sand/Buttons/1.png',
     '2': 'images/gui/set_gui_01/Sand/Buttons/2.png',
@@ -122,6 +133,8 @@ MENU_INITIAL = 'menu_initial'
 MENU_LEVELS = 'menu_levels'
 DISPLAY_PLAY = 'display_play'
 DISPLAY_GAME_OVER = 'display_game_over'
+DISPLAY_WIN = 'display_win'
+DISPLAY_PAUSE = 'display_pause'
 
 
 BUTTON_SETTINGS = 'button_settings'
@@ -129,6 +142,10 @@ BUTTON_STAR = 'button_star'
 BUTTON_EXIT = 'button_exit'
 BUTTON_RANKNG = 'button_ranking'
 BUTTON_SETTINGS = 'button_settings'
+BUTTON_PAUSE = 'button_pause'
+BUTTON_MENU = 'button_menu'
+BUTTON_RESTART = 'button_restart'
+
 
 
 MAX_LEVELS_ROW = 2

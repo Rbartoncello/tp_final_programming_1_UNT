@@ -27,7 +27,7 @@ class TextBox(Widget):
         mousePos = pygame.mouse.get_pos()
         self.state = M_STATE_NORMAL
         if self.slave_rect_collide.collidepoint(mousePos):
-            if (self.writing_flag):
+            if self.writing_flag:
                 self.state = M_STATE_CLICK
             else:
                 self.state = M_STATE_HOVER

@@ -1,0 +1,64 @@
+{
+    "x": 60,
+    "y": 100,
+    "speed": 4,
+    "gravity": 0.8,
+    "jump_speed": -17,
+    "frame_rate_ms": 100,
+    "move_rate_ms": 50,
+    "jump_height": 200,
+    "live": 3,
+    "type": "Main Characters/Virtual Guy/",
+    "scale": 0.15,
+    "interval_time_jump": 300,
+    "width": 60,
+    "height": 100,
+    "status_init": "idle",
+    "orientation_init": [
+        "right"
+    ],
+    "animations": {
+        "idle": {
+            "path": "Idle (32x32).png",
+            "cols": 11,
+            "rows": 1,
+            "right": false,
+            "left": true
+        },
+        "walk": {
+            "path": "Wall Jump (32x32).png",
+            "cols": 5,
+            "rows": 1,
+            "right": false,
+            "left": true
+        },
+        "jump": {
+            "path": "Jump (32x32).png",
+            "cols": 1,
+            "rows": 1,
+            "right": false,
+            "left": true
+        },
+        "run": {
+            "path": "Run (32x32).png",
+            "cols": 12,
+            "rows": 1,
+            "right": false,
+            "left": true
+        },
+        "fall": {
+            "path": "Fall (32x32).png",
+            "cols": 1,
+            "rows": 1,
+            "right": false,
+            "left": true
+        },
+        "hit": {
+            "path": "Hit (32x32).png",
+            "cols": 7,
+            "rows": 1,
+            "right": false,
+            "left": true
+        }
+    }
+}
