@@ -34,10 +34,17 @@ class Character:
         self._time_accumulation_die = 0
 
         self._was_die = False
+        
+        self.__sound = py.mixer.Sound('sound/jump.mp3')
+        self.__sound.set_volume(0.1)
 
     @property
     def rect(self):
         return self._rect
+    
+    @property
+    def sound(self):
+        return self.__sound
 
     @property
     def was_die(
@@ -54,6 +61,8 @@ class Character:
 
     def jump(self, collided=False):
         if (self.status != JUMP and self.status != FALL) or collided:
+            self.__sound = py.mixer.Sound('sound/jump.mp3')
+            self.__sound.play()
             self.direction.y = self.jump_speed
 
     def do_animation(self, delta_ms, was_die=False):
@@ -79,7 +88,10 @@ class Character:
     def side(self, side):
         return self.rects[side]
 
-    def die(self):
+    def die(self, sound):
+        self.__sound = py.mixer.Sound(sound)
+        self.__sound.play()
+        self.__sound.set_volume(0.5)
         self.frame_index = 0
         self.status = HIT
         self._was_die = True

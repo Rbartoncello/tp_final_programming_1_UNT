@@ -24,11 +24,25 @@ class Play(Form):
         self.flag = True
         self.cache = 0
         self.__current_level = 1
-        self.__score = 0
+        self.__score = []
+        self.__sound = py.mixer.Sound('sound/game_win.mp3')
+    
+    @property
+    def sound(self):
+        sounds = self.level.sound
+        
+        sounds.append(self.__sound)
+        sounds.append(sound)
+        
+        return sounds
     
     @property
     def current_level(self): 
         return self.__current_level
+    
+    @property
+    def score(self): 
+        return self.__score
     
     @current_level.setter
     def current_level(self, level): 
@@ -46,8 +60,12 @@ class Play(Form):
                     self.level = Level(self.master_surface, self.__current_level)
                     self.flag = False
                 elif self.level.win:
+                    self.__sound = py.mixer.Sound('sound/game_win.mp3')
+                    sound.set_volume(0.1)
+                    self.__sound.set_volume(0.9)
+                    self.__sound.play()
+                    self.__score.insert(self.__current_level, self.level.score)
                     self.__current_level += 1
-                    self.__score += self.level.score
                     self.set_active(DISPLAY_WIN)
                     self.flag = True
                 else:
@@ -63,6 +81,7 @@ class Play(Form):
     def draw(self):
         if self.form_in_game.active and not self.level.lost:
             self.form_in_game.draw()
+            
             
     def reset_level(self, level):
         self.level.reset(level)

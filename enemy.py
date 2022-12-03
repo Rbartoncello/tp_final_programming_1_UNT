@@ -73,10 +73,10 @@ class Enemy(Character):
         if player is not None:
             if self.rects[LEFT].colliderect(player.side(RIGHT)):
                 if not self._was_die:
-                    player.die()
+                    player.die('sound/game_over.mp3')
             if self.rects[RIGHT].colliderect(player.side(LEFT)):
                 if not self._was_die:
-                    player.die()
+                    player.die('sound/game_over.mp3')
             if player.rect.colliderect(self.__rect_sensor):
                 self.__sensor_activate = True
             else:

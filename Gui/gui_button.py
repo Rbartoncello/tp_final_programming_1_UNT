@@ -11,6 +11,8 @@ class Button(Widget):
         self.on_click = on_click
         self.on_click_param = on_click_param
         self.state = M_STATE_NORMAL
+        self.sound = sound
+        self.sound.set_volume(0.5)
 
     def render(self):
         super().render()
@@ -20,6 +22,7 @@ class Button(Widget):
         elif self.state == M_STATE_CLICK:  #  Se oscurece la imagen
             self.slave_surface.fill(
                 M_BRIGHT_CLICK, special_flags=py.BLEND_RGB_SUB)
+            self.sound.play()
 
     def update(self, lista_eventos):
         mousePos = py.mouse.get_pos()

@@ -8,6 +8,7 @@ class Player(Character):
         super().__init__(data)
         self.__live = data['live']
         self.__score = 0
+        
 
     @property
     def score(self): return self.__score
@@ -43,6 +44,7 @@ class Player(Character):
         for event in py.event.get():
             if event.type == py.KEYDOWN and event.key == py.K_SPACE:
                 self.jump()
+                
 
     def get_status(self):
         if self.direction.y < 0:
@@ -75,11 +77,13 @@ class Player(Character):
                         if shot.rect.colliderect(self._rect) and not shot.rect.x in range(enemy.rect.left, enemy.rect.right):
                             shot.reset()
                             self.__live -= 1
-                            if self.__live == 0: self.die()
+                            self.__sound = py.mixer.Sound('sound/shot.mp3')
+                            self.__sound.play()
+                            if self.__live == 0: self.die('sound/game_over.mp3')
                     if self.rects[GROUND].colliderect(enemy.side(TOP)):
                         self.jump(True)
                         self.score = SCORE_KILL
-                        enemy.die()
+                        enemy.die('sound/kill_enemy.mp3')
         if fruits:
             for fruit in fruits:
                 if self._rect.colliderect(fruit.rect):
@@ -90,4 +94,6 @@ class Player(Character):
         if tramps:
             for tramp in tramps:
                 if self._rect.colliderect(tramp.rect):
-                    self.die()
+                    self.die('sound/game_over.mp3')
+                    
+                    

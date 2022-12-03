@@ -5,14 +5,16 @@ from constantes import *
 
 
 class TextBox(Widget):
-    def __init__(self, master, x=0, y=0, w=200, h=50, color_background=GREEN, color_border=RED1, image_background=None, text="Button", font="Arial", font_size=14, font_color=BLUE, on_click=None, on_click_param=None):
-        super().__init__(master, x, y, w, h, color_background, color_border,
-                         image_background, text, font, font_size, font_color)
+    def __init__(self, master, pos=(0, 0), size=(200, 50), color_bg=GREEN, color_border=RED1, image_bg=None, text="Button", font="Arial", font_size=14, font_color=BLUE, on_click=None, on_click_param=None):
+        super().__init__(master, pos, size, color_bg, color_border, image_bg, text, font, font_size, font_color)
         self.on_click = on_click
         self.on_click_param = on_click_param
         self.state = M_STATE_NORMAL
         self.writing_flag = False
         self.render()
+        
+    @property
+    def text(self): return self._text
 
     def render(self):
         super().render()
@@ -27,7 +29,7 @@ class TextBox(Widget):
         mousePos = pygame.mouse.get_pos()
         self.state = M_STATE_NORMAL
         if self.slave_rect_collide.collidepoint(mousePos):
-            if self.writing_flag:
+            if (self.writing_flag):
                 self.state = M_STATE_CLICK
             else:
                 self.state = M_STATE_HOVER
