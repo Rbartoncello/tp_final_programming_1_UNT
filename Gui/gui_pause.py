@@ -11,18 +11,22 @@ class Pause(DisplayEndLevel):
                          header=PATH_HEADER_PAUSE)
 
         self.__button_settings = self.create_button(
-            ((size[0] / 2) - 200, (size[1] / 2)), SIZE_BUTTONS_PAUSE, PATH_BUTTON_SETTINGS,
+            ((size[0] / 2) - 200, (size[1] / 2)
+             ), SIZE_BUTTONS_PAUSE, PATH_BUTTON_SETTINGS,
             self.__on_click_button_settings, BUTTON_SETTINGS)
 
         self.__button_start = self.create_button(
-            ((size[0] / 2) - 50, (size[1] / 2)), SIZE_BUTTONS_PAUSE, PATH_BUTTON_PLAY, self.__on_click_button_start,
+            ((size[0] / 2) - 50, (size[1] / 2)
+             ), SIZE_BUTTONS_PAUSE, PATH_BUTTON_PLAY, self.__on_click_button_start,
             BUTTON_PAUSE)
 
         self.__button_menu = self.create_button(
-            ((size[0] / 2) + 100, (size[1] / 2)), SIZE_BUTTONS_PAUSE, PATH_BUTTON_MENU, self.__on_click_button_menu,
+            ((size[0] / 2) + 100, (size[1] / 2)
+             ), SIZE_BUTTONS_PAUSE, PATH_BUTTON_MENU, self.__on_click_button_menu,
             BUTTON_MENU)
 
-        self.__lista_widget = [self.__button_start, self.__button_settings, self.__button_menu]
+        self.__lista_widget = [self.__button_start,
+                               self.__button_settings, self.__button_menu]
 
         self.is_pause = is_pause
 
@@ -42,17 +46,20 @@ class Pause(DisplayEndLevel):
         )
 
     def __on_click_button_start(self, parametro):
-        if DEBUG: print(parametro, self.time_in_pause / 1000)
+        if DEBUG:
+            print(parametro, self.time_in_pause / 1000)
         self.is_pause(False)
         self.time_in_pause = 0
         self.set_active(DISPLAY_PLAY)
 
     def __on_click_button_settings(self, parametro):
-        if DEBUG: print(parametro)
+        if DEBUG:
+            print(parametro)
 
     def __on_click_button_menu(self, parametro):
-        if DEBUG: print(parametro)
-        
+        if DEBUG:
+            print(parametro)
+
         self.set_active(MENU_INITIAL)
 
     def update(self, lista_event):

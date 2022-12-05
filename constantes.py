@@ -1,5 +1,5 @@
 from colores import *
-
+import pygame as py
 
 GROUND_LEVEL = 600
 FPS = 60
@@ -63,6 +63,11 @@ H_FORM_IN_GAME = 50
 W_SCORE_TIMER = len('Timer: 0000        Score: 0000')
 W_H_PLATFORM = 48
 SIZE_BUTTON_MENU_INITIAL = (150, 150)
+
+SIZE_BUTTON_SEND = (150, 100)
+SIZE_BUTTONS_SETTINGS = (125, 125)
+
+
 SIZE_BUTTONS_PAUSE = (100, 100)
 SIZE_BUTTON_EXIT = (75, 75)
 SIZE_BUTTON_LEVEL = (125, 125)
@@ -99,11 +104,23 @@ PATH_BUTTON_PAUSE = 'images/gui/jungle/btn/pause.png'
 PATH_BUTTON_MENU = 'images/gui/jungle/btn/menu.png'
 PATH_BUTTON_RESTART = 'images/gui/jungle/btn/restart.png'
 
+PATH_BUTTON_MUSIC_ON = 'images/gui/jungle/btn/music.png'
+PATH_BUTTON_MUSIC_OFF = 'images/gui/jungle/btn/music_off.png'
+
+PATH_BUTTON_SOUND_ON = 'images/gui/jungle/btn/sound.png'
+PATH_BUTTON_SOUND_OFF = 'images/gui/jungle/btn/sound_off.png'
+
 PATH_BUTTON_IMAGE_BG = 'images/gui/jungle/level_select/table.png'
 PATH_BUTTON_LEVELS_UNLOCK = 'images/gui/jungle/level_select/lock.png'
 PATH_GAME_OVER = 'images/gui/jungle/you_lose/header.png'
 PATH_HEADER_WIN = 'images/gui/jungle/you_win/header.png'
 PATH_HEADER_PAUSE = 'images/gui/jungle/pause/header.png'
+PATH_HEADER_RANKING = 'images/gui/jungle/rating/header.png'
+PATH_HEADER_SETTINGS = 'images/gui/jungle/settings/92.png'
+
+
+PATH_BUTTON_SEND = 'images/gui/jungle/rating/btn.png'
+PATH_PICTURE_PLAYER = 'images/gui/jungle/rating/face.png'
 
 
 PATH_BUTTON_LEVELS_NUMBER = {
@@ -131,10 +148,13 @@ LEVELS_BG = 'images/gui/jungle/level_select/bg.png'
 
 MENU_INITIAL = 'menu_initial'
 MENU_LEVELS = 'menu_levels'
+MENU_SETTINGS = 'menu_settings'
 DISPLAY_PLAY = 'display_play'
 DISPLAY_GAME_OVER = 'display_game_over'
 DISPLAY_WIN = 'display_win'
 DISPLAY_PAUSE = 'display_pause'
+MENU_RANKING = 'menu_ranking'
+FORM_INPUT_NAME = 'form_input_name'
 
 
 BUTTON_SETTINGS = 'button_settings'
@@ -145,7 +165,14 @@ BUTTON_SETTINGS = 'button_settings'
 BUTTON_PAUSE = 'button_pause'
 BUTTON_MENU = 'button_menu'
 BUTTON_RESTART = 'button_restart'
+BUTTON_SEND = 'button_send'
+BUTTON_MUSIC_ON = 'button_music_on'
+BUTTON_MUSIC_OFF = 'button_music_off'
+BUTTON_SOUND_ON = 'button_sound_on'
+BUTTON_SOUND_OFF = 'button_sound_off'
 
+py.mixer.init()
+sound = py.mixer.Sound('sound/click.wav')
 
 
 MAX_LEVELS_ROW = 2

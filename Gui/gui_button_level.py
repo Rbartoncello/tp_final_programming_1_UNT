@@ -7,7 +7,7 @@ from constantes import *
 class ButtonLevel(Button):
     def __init__(self, master, pos, size, color_bg, color_border, image_bg, text, font, font_size, font_color, on_click, on_click_param, level):
         super().__init__(master, pos, size, color_bg, color_border, image_bg,
-                         text, font, font_size, font_color, on_click, on_click_param,)
+                         text, font, font_size, font_color, on_click, on_click_param)
 
         self.__image_lock = py.image.load(PATH_BUTTON_LEVELS_UNLOCK)        
         self.__image_lock = py.transform.rotozoom(self.__image_lock, 0, 0.5).convert_alpha()

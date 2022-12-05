@@ -47,6 +47,18 @@ class Level:
         self.__score = 0
 
     @property
+    def sound(self):
+        sounds = [self.__player.sound] 
+        
+        for enemy in self.enemies:
+            sounds.append(enemy.sound)
+        
+        for fruit in self.fruits:
+            sounds.append(fruit.sound)
+        
+        return sounds
+    
+    @property
     def level(self):
         return self.__level
 

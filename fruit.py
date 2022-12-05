@@ -16,7 +16,13 @@ class Fruit:
         self.__frame_rate_ms = 30
         self.__was_collected = False
         self.sumo_punto = False
+        self.__sound = py.mixer.Sound('sound/collected.mp3')
+        self.__sound.set_volume(0.1)
 
+    @property
+    def sound(self):
+        return self.__sound
+    
     @property
     def rect(self):
         return self.__rect
@@ -39,6 +45,7 @@ class Fruit:
         self.__was_collected = True
         self.__status = COLLECTED
         self.__frame_rate_ms = 50
+        self.__sound.play()
 
     def update(self, delta_ms):
         self.do_animation(delta_ms)
