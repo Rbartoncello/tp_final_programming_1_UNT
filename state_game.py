@@ -37,7 +37,7 @@ class StateGame:
             size=(W_WINDOWN, H_WINDOWN),
             color_bg=None, color_border=None,
             active=False)
-        
+
         self.menu_settings = MenuSettings(
             name=MENU_SETTINGS,
             master_surface=screen,
@@ -122,11 +122,10 @@ class StateGame:
                     self.levels.stars_last_level_unlock = self.play.stars()
                 elif state == self.play:
                     state.current_level = self.levels.level_selected
-                elif state == self.form_input_names:
-                    print(reduce(lambda x, y: x + y, self.play.score))
-                    self.form_input_names.score = reduce(lambda x, y: x + y, self.play.score)
+                elif state == self.form_input_names and self.play.score:
+                    state.score = reduce(lambda x, y: x + y, self.play.score)
                 elif state == self.menu_settings:
-                    self.menu_settings.sounds = self.play.sound
+                    state.sounds = self.play.sound
                 state.update(list_event)
-                
+
                 state.draw()
