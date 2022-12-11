@@ -6,6 +6,7 @@ from Gui.gui_form import Form
 from Gui.gui_button import Button
 from Gui.gui_textbox import TextBox
 from Gui.gui_text import Text
+from data.data import updateInfo
 import sqlite3 as sql
 
 def insertRow(name, score):
@@ -36,7 +37,7 @@ class FormInputName(Form):
             color_border=None,
             image_bg=PATH_BUTTON_IMAGE_BG,
             text="",
-            font="Verdana",
+            font="IMPACT",
             font_size=30,
             font_color=BLACK
         )
@@ -49,8 +50,8 @@ class FormInputName(Form):
             color_border=None,
             image_bg=PATH_BG_SELECT_LEVELS,
             text='Ingrese su nombre',
-            font="Verdana",
-            font_size=50,
+            font="IMPACT",
+            font_size=65,
             font_color=BLACK
         )
 
@@ -81,7 +82,7 @@ class FormInputName(Form):
         if DEBUG:
             print(parametro, self.input_text.text)
         if self.input_text.text:
-            insertRow(self.input_text.text, self.__score)
+            updateInfo(self.input_text.text, self.__score)
             py.quit()
             sys.exit()
 

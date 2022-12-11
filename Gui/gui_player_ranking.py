@@ -8,7 +8,7 @@ from Gui.gui_text import Text
 class PlayerRanking(Widget):
     def __init__(self, master, pos, size, color_bg, color_border, text):
         super().__init__(master, pos, size, color_bg, color_border, image_bg=None,
-                         text=text, font="Verdana", font_size=30, font_color=BLACK)
+                         text=text, font="IMPACT", font_size=30, font_color=BLACK)
 
         self.__image_player = py.image.load(PATH_PICTURE_PLAYER)
         self.__image_player = py.transform.rotozoom(
@@ -26,8 +26,8 @@ class PlayerRanking(Widget):
             color_border=None,
             image_bg=None,
             text=text,
-            font="Verdana",
-            font_size=30,
+            font="IMPACT",
+            font_size=55,
             font_color=BLACK
         )
 
@@ -40,8 +40,8 @@ class PlayerRanking(Widget):
             color_border=None,
             image_bg=None,
             text=text,
-            font="Verdana",
-            font_size=30,
+            font="IMPACT",
+            font_size=55,
             font_color=BLACK
         )
 
