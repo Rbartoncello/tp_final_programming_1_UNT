@@ -19,6 +19,7 @@ Este es un juego animado hecho en python con la librería open source pygame.
 Básicamente se trata de un juego single player, el cual cuenta con frutas, enemigos y  trampas. Consta de  niveles, los cuales tenes que ir ganarlos para poder desbloquear el siguiente nivel, el nivel se gana comiendo todas las frutas que te aparecen en pantalla, pero si tambien lo haces en menos de 30 segundos tienes un estrella más y si eliminas a todos lo enemigos tenes la ultima estrella, la forma de eliminarlos es saltando en la cabeza de los mismos. Estos enemigos te pueden matar de dos forma, ya sea tocando o disparando balas 
 
 ##Instación
+[Instalacion](https://youtu.be/gRpY-ty3alU "Instalacion")
 ##Empesar
 Para empezar en la consola debra ingresar el siguiente comando
 ```sh
@@ -48,6 +49,9 @@ $ python main.py
 ```
 
 ##Media
+![](https://raw.githubusercontent.com/Rbartoncello/tp_final_programming_1_UNT/main/screenshots/Screenshot%20from%202022-12-11%2017-25-38.png)
+![](https://raw.githubusercontent.com/Rbartoncello/tp_final_programming_1_UNT/main/screenshots/Screenshot%20from%202022-12-11%2017-25-52.png)
+![](https://raw.githubusercontent.com/Rbartoncello/tp_final_programming_1_UNT/main/screenshots/Screenshot%20from%202022-12-11%2017-26-13.png)
 ##Contacto
 bartoncello61@gmail.com
 [Linkedin](https://www.linkedin.com/in/ricardo-jose-bartoncello-a758201b8/ "Linkedin")
