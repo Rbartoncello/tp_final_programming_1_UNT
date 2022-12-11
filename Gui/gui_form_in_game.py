@@ -16,11 +16,11 @@ class FormInGame(Form):
 
         self.score_display = DisplayBox(master=self, pos=(0, 0), size=(
             W_SCORE_TIMER * 10, size[1]), color_bg=None, color_border=None, image_bg=PATH_BG_SCORE_DISPLAY,
-                                        text="Time: 0   Score: 0", font="Verdana", font_size=30, font_color=BLACK)
+                                        text="Time: 0   Score: 0", font="IMPACT", font_size=40, font_color=BLACK)
 
         self.lives_bar = LivesBar(master=self, pos=(W_WINDOWN - 120, 0), size=(
-            120, size[1]), color_bg=None, color_border=None, image_bg=PATH_BG_LIVES_BAR,
-                                  image_progress="pngwing.com.png", value=value.live, value_max=value.live)
+            120, 35), color_bg=None, color_border=None, image_bg=PATH_BG_LIVES_BAR,
+                                  image_progress="images/gui/set_gui_01/Standard/Elements/heart.png", value=value.live, value_max=value.live)
 
         self.lista_widget = [self.score_display, self.lives_bar, self.pause_button]
 

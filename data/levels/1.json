@@ -1,92 +1,95 @@
 {
-	"enemy": [{
-		"x": 400,
-		"y": 100,
-		"speed": 5,
-		"gravity": 0.8,
-		"jump_speed": -1,
-		"frame_rate_ms": 100,
-		"move_rate_ms": 50,
-		"jump_height": 200,
-		"type": "Enemies/Radish/",
-		"scale": 0.15,
-		"interval_time_jump": 300,
-		"width": 60,
-		"height": 100,
-		"status_init": "run",
-		"type_sensor": "horizontal",
-		"orientation_init": [
-			"left",
-			"right"
-		],
-		"animations": {
-			"run": {
-				"path": "Run (30x38).png",
-				"cols": 12,
-				"rows": 1,
-				"right": true,
-				"left": false
+	"enemy": [
+		{
+			"x": 400,
+			"y": 100,
+			"speed": 5,
+			"gravity": 0.8,
+			"jump_speed": -1,
+			"frame_rate_ms": 100,
+			"move_rate_ms": 50,
+			"jump_height": 200,
+			"type": "Enemies/Radish/",
+			"scale": 0.15,
+			"interval_time_jump": 300,
+			"width": 60,
+			"height": 100,
+			"status_init": "run",
+			"type_sensor": "horizontal",
+			"orientation_init": [
+				"left",
+				"right"
+			],
+			"animations": {
+				"run": {
+					"path": "Run (30x38).png",
+					"cols": 12,
+					"rows": 1,
+					"right": true,
+					"left": false
+				},
+				"hit": {
+					"path": "Hit (30x38).png",
+					"cols": 5,
+					"rows": 1,
+					"right": true,
+					"left": false
+				}
 			},
-			"hit": {
-				"path": "Hit (30x38).png",
-				"cols": 5,
-				"rows": 1,
-				"right": true,
-				"left": false
+			"amount_shot": 5,
+			"shot": {
+				"path": "Leafs.png",
+				"time_shooting": 500,
+				"speed": 2,
+				"cols": 2,
+				"rows": 1
 			}
 		},
-		"amount_shot": 5,
-		"shot": {
-			"path": "Leafs.png",
-			"time_shooting": 500,
-			"speed": 2,
-			"cols": 2,
-			"rows": 1
-		}
-	},{
-		"x": 60,
-		"y": 200,
-		"speed": 0,
-		"gravity": 0.8,
-		"jump_speed": -17,
-		"frame_rate_ms": 100,
-		"move_rate_ms": 50,
-		"jump_height": 200,
-		"type": "Enemies/Radish/",
-		"scale": 0.15,
-		"interval_time_jump": 300,
-		"width": 60,
-		"height": 100,
-		"status_init": "idle",
-		"type_sensor": "horizontal",
-		"orientation_init": [
-			"right"
-		],
-		"animations": {
-			"idle": {
-				"path": "Idle 2 (30x38).png",
-				"cols": 9,
-				"rows": 1,
-				"right": true,
-				"left": false
+		{
+			"x": 60,
+			"y": 200,
+			"speed": 0,
+			"gravity": 0.8,
+			"jump_speed": -17,
+			"frame_rate_ms": 100,
+			"move_rate_ms": 50,
+			"jump_height": 200,
+			"type": "Enemies/Radish/",
+			"scale": 0.15,
+			"interval_time_jump": 300,
+			"width": 60,
+			"height": 100,
+			"status_init": "idle",
+			"type_sensor": "horizontal",
+			"orientation_init": [
+				"right"
+			],
+			"animations": {
+				"idle": {
+					"path": "Idle 2 (30x38).png",
+					"cols": 9,
+					"rows": 1,
+					"right": true,
+					"left": false
+				},
+				"hit": {
+					"path": "Hit (30x38).png",
+					"cols": 5,
+					"rows": 1,
+					"right": true,
+					"left": false
+				}
 			},
-			"hit": {
-				"path": "Hit (30x38).png",
-				"cols": 5,
-				"rows": 1,
-				"right": true,
-				"left": false
+			"amount_shot": 5,
+			"shot": {
+				"path": "Leafs.png",
+				"time_shooting": 100,
+				"speed": 2,
+				"cols": 2,
+				"rows": 1
 			}
-		},
-		"amount_shot": 5,
-		"shot": {
-			"path": "Leafs.png",
-			"time_shooting": 100,
-			"speed": 2,
-			"cols": 2,
-			"rows": 1
 		}
-	}],
+	],
 	"fruits": [
 		{
 			"x": 200,
@@ -95,182 +98,190 @@
 			"height": 32,
 			"animations": {
 				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Apple.png",
+					"path": "images/Items/Fruits/Apple.png",
 					"cols": 17,
 					"rows": 1,
 					"right": false,
 					"left": true
 				},
 				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
+					"path": "images/Items/Fruits/Collected.png",
 					"cols": 6,
 					"rows": 1,
 					"right": false,
 					"left": true
 				}
 			}
-		},{
+		},
+		{
 			"x": 176,
 			"y": 216,
 			"width": 32,
 			"height": 32,
 			"animations": {
 				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Bananas.png",
+					"path": "images/Items/Fruits/Bananas.png",
 					"cols": 17,
 					"rows": 1,
 					"right": false,
 					"left": true
 				},
 				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
+					"path": "images/Items/Fruits/Collected.png",
 					"cols": 6,
 					"rows": 1,
 					"right": false,
 					"left": true
 				}
 			}
-		},{
+		},
+		{
 			"x": 152,
 			"y": 248,
 			"width": 32,
 			"height": 32,
 			"animations": {
 				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Cherries.png",
+					"path": "images/Items/Fruits/Cherries.png",
 					"cols": 17,
 					"rows": 1,
 					"right": false,
 					"left": true
 				},
 				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
+					"path": "images/Items/Fruits/Collected.png",
 					"cols": 6,
 					"rows": 1,
 					"right": false,
 					"left": true
 				}
 			}
-		},{
+		},
+		{
 			"x": 488,
 			"y": 248,
 			"width": 32,
 			"height": 32,
 			"animations": {
 				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Kiwi.png",
+					"path": "images/Items/Fruits/Kiwi.png",
 					"cols": 17,
 					"rows": 1,
 					"right": false,
 					"left": true
 				},
 				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
+					"path": "images/Items/Fruits/Collected.png",
 					"cols": 6,
 					"rows": 1,
 					"right": false,
 					"left": true
 				}
 			}
-		},{
+		},
+		{
 			"x": 464,
 			"y": 216,
 			"width": 32,
 			"height": 32,
 			"animations": {
 				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Melon.png",
+					"path": "images/Items/Fruits/Melon.png",
 					"cols": 17,
 					"rows": 1,
 					"right": false,
 					"left": true
 				},
 				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
+					"path": "images/Items/Fruits/Collected.png",
 					"cols": 6,
 					"rows": 1,
 					"right": false,
 					"left": true
 				}
 			}
-		},{
+		},
+		{
 			"x": 440,
 			"y": 248,
 			"width": 32,
 			"height": 32,
 			"animations": {
 				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Orange.png",
+					"path": "images/Items/Fruits/Orange.png",
 					"cols": 17,
 					"rows": 1,
 					"right": false,
 					"left": true
 				},
 				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
+					"path": "images/Items/Fruits/Collected.png",
 					"cols": 6,
 					"rows": 1,
 					"right": false,
 					"left": true
 				}
 			}
-		},{
+		},
+		{
 			"x": 776,
 			"y": 248,
 			"width": 32,
 			"height": 32,
 			"animations": {
 				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Pineapple.png",
+					"path": "images/Items/Fruits/Pineapple.png",
 					"cols": 17,
 					"rows": 1,
 					"right": false,
 					"left": true
 				},
 				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
+					"path": "images/Items/Fruits/Collected.png",
 					"cols": 6,
 					"rows": 1,
 					"right": false,
 					"left": true
 				}
 			}
-		},{
+		},
+		{
 			"x": 752,
 			"y": 216,
 			"width": 32,
 			"height": 32,
 			"animations": {
 				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Strawberry.png",
+					"path": "images/Items/Fruits/Strawberry.png",
 					"cols": 17,
 					"rows": 1,
 					"right": false,
 					"left": true
 				},
 				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
+					"path": "images/Items/Fruits/Collected.png",
 					"cols": 6,
 					"rows": 1,
 					"right": false,
 					"left": true
 				}
 			}
-		},{
+		},
+		{
 			"x": 728,
 			"y": 248,
 			"width": 32,
 			"height": 32,
 			"animations": {
 				"idle": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Orange.png",
+					"path": "images/Items/Fruits/Orange.png",
 					"cols": 17,
 					"rows": 1,
 					"right": false,
 					"left": true
 				},
 				"collected": {
-					"path": "PIXEL ADVENTURE/Recursos/Items/Fruits/Collected.png",
+					"path": "images/Items/Fruits/Collected.png",
 					"cols": 6,
 					"rows": 1,
 					"right": false,
@@ -279,7 +290,7 @@
 			}
 		}
 	],
-	"map":[
+	"map": [
 		"                     ",
 		"544444444444444444445",
 		"3                   3",
@@ -293,19 +304,59 @@
 		"3                   3",
 		"3222       2221111113",
 		"322222222221111111113",
-		"544444444444444444445"],
+		"544444444444444444445"
+	],
 	"platforms": {
-		"0": {"width": 32, "height": 32, "path": "PIXEL ADVENTURE/Recursos/Terrain/Square/1.png"},
-		"1": {"width": 48, "height": 48, "path": "PIXEL ADVENTURE/Recursos/Terrain/Block/2.png"},
-		"2": {"width": 48, "height": 48, "path": "PIXEL ADVENTURE/Recursos/Terrain/Ground/2.png"},
-		"3": {"width": 16, "height": 24, "path": "PIXEL ADVENTURE/Recursos/Terrain/Wall/2.png"},
-		"4": {"width": 24, "height": 16, "path": "PIXEL ADVENTURE/Recursos/Terrain/Border/2.png"},
-		"5": {"width": 16, "height": 16, "path": "PIXEL ADVENTURE/Recursos/Terrain/Corner/4.png"},
-		"6": {"width": 48, "height": 48, "path": "images/tileset/forest/Tiles/13.png"},
-		"7": {"width": 48, "height": 48, "path": "images/tileset/forest/Tiles/14.png"},
-		"8": {"width": 48, "height": 48, "path": "images/tileset/forest/Tiles/15.png"},
-		"9": {"width": 48, "height": 5, "path": "PIXEL ADVENTURE/Recursos/Terrain/Platforms/1.png"}
+		"0": {
+			"width": 32,
+			"height": 32,
+			"path": "images/Terrain/Square/1.png"
+		},
+		"1": {
+			"width": 48,
+			"height": 48,
+			"path": "images/Terrain/Block/2.png"
+		},
+		"2": {
+			"width": 48,
+			"height": 48,
+			"path": "images/Terrain/Ground/2.png"
+		},
+		"3": {
+			"width": 16,
+			"height": 24,
+			"path": "images/Terrain/Wall/2.png"
+		},
+		"4": {
+			"width": 24,
+			"height": 16,
+			"path": "images/Terrain/Border/2.png"
+		},
+		"5": {
+			"width": 16,
+			"height": 16,
+			"path": "images/Terrain/Corner/4.png"
+		},
+		"6": {
+			"width": 48,
+			"height": 48,
+			"path": "images/tileset/forest/Tiles/13.png"
+		},
+		"7": {
+			"width": 48,
+			"height": 48,
+			"path": "images/tileset/forest/Tiles/14.png"
+		},
+		"8": {
+			"width": 48,
+			"height": 48,
+			"path": "images/tileset/forest/Tiles/15.png"
+		},
+		"9": {
+			"width": 48,
+			"height": 5,
+			"path": "images/Terrain/Platforms/1.png"
+		}
 	},
-	"tramps": [
-	]
+	"tramps": []
 }

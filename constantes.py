@@ -5,7 +5,7 @@ GROUND_LEVEL = 600
 FPS = 60
 
 
-DEBUG = False
+DEBUG = True
 TIME_TO_DIE = 2000
 FLOOR = 600
 
@@ -92,8 +92,8 @@ FILE = './data/levels/{}.json'
 FILE_PLAYER = './data/player/data.json'
 
 PATH_SOURCES = "PIXEL ADVENTURE/Recursos/"
-PATH_BG_SCORE_DISPLAY = "PIXEL ADVENTURE/Recursos/gui/set_gui_01/Sand/Bars/Bar_Background01.png"
-PATH_BG_LIVES_BAR = "PIXEL ADVENTURE/Recursos/gui/set_gui_01/Sand/Bars/Bar_Background01.png"
+PATH_BG_SCORE_DISPLAY = "images/gui/set_gui_01/Sand/Bars/Bar_Background01.png"
+PATH_BG_LIVES_BAR = "images/gui/set_gui_01/Sand/Bars/Bar_Background01.png"
 PATH_HEADER_SELECT_LEVELS = 'images/gui/jungle/level_select/header.png'
 PATH_BG_SELECT_LEVELS = 'images/gui/jungle/level_select/table2.png'
 PATH_BUTTON_CLOSE = 'images/gui/jungle/btn/close.png'
