@@ -1,3 +1,4 @@
+
 ### Juego animado  en 2D
 
 https://github.com/Rbartoncello/tp_final_programming_1_UNT.git
@@ -50,7 +51,6 @@ $ python main.py
 ##Contacto
 bartoncello61@gmail.com
 [Linkedin](https://www.linkedin.com/in/ricardo-jose-bartoncello-a758201b8/ "Linkedin")
-
 
 
 
